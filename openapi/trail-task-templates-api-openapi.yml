@@ -1,0 +1,326 @@
+openapi: 3.0.1
+info:
+  title: Areas Task Templates API
+  version: v1
+  description: 'You can use this API to query details of your areas.
+
+    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
+
+
+    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
+
+    '
+servers:
+- url: https://web.trailapp.com/api
+- url: https://us.trailapp.com/api
+  description: US
+tags:
+- name: Task Templates
+paths:
+  /evo_api/task_templates:
+    get:
+      tags:
+      - Task Templates
+      summary: Retrieves task templates
+      operationId: getTaskTemplates
+      security:
+      - oauth2:
+        - openid
+        - profile
+        - email
+        - access.trail.api
+      responses:
+        '200':
+          description: task templates retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskTemplate'
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+  /public/task_templates/v1/list:
+    get:
+      summary: Retrieves task templates
+      tags:
+      - Task Templates
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Task templates retrieved
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    data:
+                    - id: 1
+                      name: Recurring task
+                      status: published
+                      type: repeat
+                    - id: 2
+                      name: One off task
+                      status: published
+                      type: oneOff
+                    - id: 3
+                      name: On demand task
+                      status: published
+                      type: adHoc
+                    - id: 4
+                      name: Automated task
+                      status: draft
+                      type: automated
+                    - id: 5
+                      name: Action Template
+                      status: archived
+                      type: actionTemplate
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaskTemplate_2'
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+components:
+  schemas:
+    Subtask:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Subtask ID
+        name:
+          type: string
+          example: Clean floors
+          description: Subtask name
+        completion_value:
+          type: string
+          example: unchecked
+          description: Subtask completion value
+        position:
+          type: integer
+          example: 0
+          description: Subtask position
+          nullable: true
+      required:
+      - id
+      - name
+      - completion_value
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    TaskTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Task template ID
+        name:
+          type: string
+          example: Daily Cleaning
+          description: Task template name
+        notes:
+          type: string
+          example: Clean the main areas
+          description: Task description/notes
+        template_type:
+          type: string
+          example: single
+          description: Template type (single, recurring, on_demand, etc.)
+        status:
+          type: string
+          example: published
+          description: Template status
+        priority:
+          type: string
+          example: medium
+          description: Task priority (high, medium, low)
+        location_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 1
+          - 2
+          - 3
+          description: Array of location IDs
+        subtasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subtask'
+          description: Array of subtasks
+      required:
+      - id
+      - name
+      - template_type
+      - status
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    TaskTemplate_2:
+      type: object
+      description: An object representing a summary of a task template - the model that is used to build new task instances
+      properties:
+        id:
+          type: integer
+          example: 120284
+          description: Unique identifier for the task template
+        name:
+          type: string
+          example: Fridge & Freezer Temperature Checks
+          description: Name of the task template
+        status:
+          type: string
+          enum:
+          - published
+          - draft
+          - archived
+          example: published
+          description: 'A string representing the current status of the task template.
+
+
+            Possible values:
+
+            - published
+
+            - draft
+
+            - archived
+
+            '
+        type:
+          type: string
+          enum:
+          - repeat
+          - oneOff
+          - adHoc
+          - automated
+          - actionTemplate
+          example: repeat
+          description: 'A string representing the type of schedule for the task template.
+
+
+            Possible values:
+
+            - repeat
+
+            - oneOff
+
+            - adHoc
+
+            - automated
+
+            - actionTemplate
+
+            '
+      required:
+      - id
+      - name
+      - status
+      - type
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      name: API_KEY
+      in: header
+externalDocs:
+  description: How to obtain an API key
+  url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api

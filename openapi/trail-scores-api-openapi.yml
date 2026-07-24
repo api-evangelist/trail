@@ -1,0 +1,409 @@
+openapi: 3.0.1
+info:
+  title: Areas Scores API
+  version: v1
+  description: 'You can use this API to query details of your areas.
+
+    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
+
+
+    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
+
+    '
+servers:
+- url: https://web.trailapp.com/api
+- url: https://us.trailapp.com/api
+  description: US
+tags:
+- name: Scores
+paths:
+  /public/scores/v1/scores:
+    post:
+      summary: Scores
+      tags:
+      - Scores
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Task instances retrieved successfully
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    data:
+                    - id: 0
+                      name: Average
+                      level: average
+                      average: 59
+                      scores:
+                        '2019-05-24':
+                          score: 53
+                          status: null
+                        '2019-05-23':
+                          score: 73
+                          status: null
+                        '2019-05-20':
+                          score: 63
+                          status: null
+                        '2019-05-04':
+                          score: 50
+                          status: null
+                    - id: 2
+                      name: England
+                      level: area
+                      average: 60
+                      scores:
+                        '2019-05-24':
+                          score: 38
+                          status: active
+                        '2019-05-23':
+                          score: 88
+                          status: active
+                        '2019-05-20':
+                          score: 63
+                          status: active
+                        '2019-05-04':
+                          score: 50
+                          status: active
+                    - id: 2
+                      name: Manchester
+                      level: site
+                      average: 75
+                      scores:
+                        '2019-05-24':
+                          score: 50
+                          status: active
+                        '2019-05-23':
+                          score: 100
+                          status: active
+                        '2019-05-20':
+                          score: 75
+                          status: active
+                        '2019-05-04':
+                          score: 75
+                          status: active
+                    - id: 4
+                      name: Newcastle
+                      level: site
+                      average: 63
+                      scores:
+                        '2019-05-24':
+                          score: 25
+                          status: active
+                        '2019-05-23':
+                          score: 100
+                          status: active
+                        '2019-05-20':
+                          score: 50
+                          status: active
+                        '2019-05-04':
+                          score: 75
+                          status: active
+                    - id: 3
+                      name: Birmingham
+                      level: site
+                      average: 50
+                      scores:
+                        '2019-05-24':
+                          score: 100
+                          status: active
+                        '2019-05-23':
+                          score: 0
+                          status: active
+                        '2019-05-20':
+                          score: 75
+                          status: active
+                        '2019-05-04':
+                          score: 25
+                          status: active
+                    - id: 1
+                      name: London
+                      level: site
+                      average: 50
+                      scores:
+                        '2019-05-24':
+                          score: 50
+                          status: active
+                        '2019-05-23':
+                          score: 75
+                          status: active
+                        '2019-05-20':
+                          score: 50
+                          status: active
+                        '2019-05-04':
+                          score: 25
+                          status: active
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Score'
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error422'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startDate:
+                  type: string
+                  format: date
+                  description: The starting date for retreived scores. A date in ISO8601 format. If the date interval is day, then this is the specific day, if it is week, it is the first day of the week this date falls in, if it is month, it is the first day of the month this date falls in. Weeks start on Sunday.
+                endDate:
+                  type: string
+                  format: date
+                  description: The ending date for retreived scores. A date in ISO8601 format. If the date interval is day, then this is the specific day, if it is week, it is the last day of the week this date falls in, if it is month, it is the last day of the month this date falls in. Weeks start on Sunday.
+                dateInterval:
+                  type: string
+                  enum:
+                  - day
+                  - week
+                  - month
+                  description: 'The period over which each score should be judged.
+
+
+                    Possible values:
+
+                    - day
+
+                    - week
+
+                    - month
+
+                    '
+                taskTemplateIds:
+                  type: array
+                  items:
+                    type: integer
+                  description: Task template IDs to retrieve scores for
+                tagIds:
+                  type: array
+                  items:
+                    type: integer
+                  description: The tag IDs to retrieve scores for
+                siteIds:
+                  type: array
+                  items:
+                    type: integer
+                  description: The site IDs to retrieve scores for
+                areaIds:
+                  type: array
+                  items:
+                    type: integer
+                  description: The area IDs to retrieve scores for
+              required:
+              - startDate
+              - endDate
+              - dateInterval
+        required: true
+components:
+  schemas:
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Score:
+      type: object
+      description: An object representing a summary of a score for a specific period
+      properties:
+        id:
+          type: integer
+          example: 467
+          description: Unique identifier for the score's level object, which could be an area or a location. For averages this will be 0.
+        level:
+          type: string
+          example: area
+          description: Name of the score's level object. If no level object, this will be 'Average'
+          enum:
+          - site
+          - area
+          - average
+        name:
+          type: string
+          example: Greater London
+          description: The name of the area or site, or Average if it is the average score object.
+        average:
+          type: integer
+          example: 75
+          description: The average of all scores for the period, out of 100
+        scores:
+          type: object
+          description: An object containing the scores for each date period. The key is an ISO8601 string of the first day of the date period
+          properties:
+            '{DATE_STRING}':
+              type: object
+              properties:
+                score:
+                  type: integer
+                  example: 75
+                  description: The score out of 100 for the period
+                status:
+                  type: string
+                  example: active
+                  nullable: true
+                  enum:
+                  - active
+                  - inactive
+                  - demo
+                  - archived
+                  - setup
+                  description: 'The status of the area or site during the period.
+
+
+                    Possible values:
+
+                    - active
+
+                    - inactive
+
+                    - demo
+
+                    - setup
+
+                    - archived
+
+
+                    For averages this will be null.
+
+                    '
+              required:
+              - score
+              - status
+      required:
+      - id
+      - level
+      - name
+      - average
+      - scores
+    Error422:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unprocessable request
+              detail:
+                type: string
+                example: Invalid IDs
+              status:
+                type: integer
+                example: 422
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      name: API_KEY
+      in: header
+externalDocs:
+  description: How to obtain an API key
+  url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api

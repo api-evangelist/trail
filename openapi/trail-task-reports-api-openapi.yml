@@ -1,0 +1,1006 @@
+openapi: 3.0.1
+info:
+  title: Areas Task Reports API
+  version: v1
+  description: 'You can use this API to query details of your areas.
+
+    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
+
+
+    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
+
+    '
+servers:
+- url: https://web.trailapp.com/api
+- url: https://us.trailapp.com/api
+  description: US
+tags:
+- name: Task Reports
+paths:
+  /public/task_reports/v1/comments:
+    post:
+      summary: Comments
+      tags:
+      - Task Reports
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Comments retrieved successfully
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    data:
+                      '3':
+                        task:
+                        - content: Task comment
+                          attachmentUrls:
+                          - http://www.example.com/trail/1#/file/abc123
+                          commentedDatetime: '2025-02-28T23:59:00.000Z'
+                          commentedByUserName: Sam
+                          commentedByUserId: 1
+                        - content: Another task comment
+                          attachmentUrls: []
+                          commentedDatetime: '2025-03-01T00:00:00.000Z'
+                          commentedByUserName: Sam
+                          commentedByUserId: 1
+                        checklist:
+                        - checkId: 1
+                          content: Checklist comment
+                          attachmentUrls:
+                          - http://www.example.com/trail/1#/file/def345
+                          commentedDatetime: '2025-02-28T22:30:00.000Z'
+                          commentedByUserName: Sam
+                          commentedByUserId: 1
+                        - checkId: 1
+                          content: Another checklist comment
+                          attachmentUrls: []
+                          commentedDatetime: '2025-02-28T23:00:00.000Z'
+                          commentedByUserName: Sam
+                          commentedByUserId: 1
+                        recordLog:
+                        - recordLogRowIndex: 0
+                          recordLogFieldId: options
+                          content: Record log comment
+                          attachmentUrls: []
+                          commentedDatetime: '2025-02-28T23:51:00.000Z'
+                          commentedByUserName: Sam
+                          commentedByUserId: 1
+                        - recordLogRowIndex: 0
+                          recordLogFieldId: options
+                          content: Another record log comment
+                          attachmentUrls: []
+                          commentedDatetime: '2025-02-28T23:52:00.000Z'
+                          commentedByUserName: Sam
+                          commentedByUserId: 1
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      '{TASK_ID}':
+                        type: object
+                        description: An object of comments separated by level, with the task instance ID as a string as the key
+                        properties:
+                          task:
+                            type: array
+                            description: An array of task level comments
+                            items:
+                              $ref: '#/components/schemas/Comment'
+                          checkList:
+                            type: array
+                            description: An array of checklist level comments
+                            items:
+                              $ref: '#/components/schemas/Comment'
+                          recordLog:
+                            type: array
+                            description: An array of record log level comments
+                            items:
+                              $ref: '#/components/schemas/Comment'
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error422'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taskInstanceIds:
+                  type: array
+                  items:
+                    type: integer
+                  description: The task instance IDs to get comments for. Maximum of 1000 IDs in a single request.
+              required:
+              - taskInstanceIds
+  /public/task_reports/v1/checklists:
+    post:
+      summary: Checklists
+      tags:
+      - Task Reports
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Checklists retrieved successfully
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    data:
+                      '3':
+                      - checkId: 2
+                        checkName: Check the freezer
+                        status: unchecked
+                        completedDatetime: '2023-05-23T12:00:00Z'
+                        completedByUserName: Sam
+                        completedByUserId: 1
+                        header: Freezer tasks
+                      - checkId: 1
+                        checkName: Check the fridge
+                        status: unchecked
+                        completedDatetime: null
+                        completedByUserName: null
+                        completedByUserId: null
+                        header: null
+                      '6':
+                      - checkId: 4
+                        checkName: Check the freezer
+                        status: done
+                        completedDatetime: '2025-03-01T00:00:00Z'
+                        completedByUserName: Dave
+                        completedByUserId: 2
+                        header: Freezer tasks
+                      - checkId: 3
+                        checkName: Check the fridge
+                        status: unchecked
+                        completedDatetime: null
+                        completedByUserName: null
+                        completedByUserId: null
+                        header: null
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/ChecklistItem'
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error422'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taskInstanceIds:
+                  type: array
+                  items:
+                    type: integer
+                  description: The task instance IDs to get checklist items for. Maximum of 1000 IDs in a single request.
+              required:
+              - taskInstanceIds
+  /public/task_reports/v1/task_instances:
+    post:
+      summary: Task instances
+      tags:
+      - Task Reports
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Task instances retrieved successfully
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    data:
+                    - taskInstanceId: 3
+                      dueFromDatetime: '2025-03-01T12:00:00.000Z'
+                      dueByDatetime: '2025-03-01T16:00:00.000Z'
+                      completedDatetime: '2025-03-01T11:00:00.000Z'
+                      exceptionTypes: []
+                      siteId: 1
+                      taskTemplateId: 3
+                      taskType: action
+                      priority: high
+                      actionTaskInstanceIds:
+                      - 5
+                      addedChecklistCount: 0
+                      areaId: 3
+                      areaName: London
+                      businessDates:
+                      - '2025-03-01'
+                      completedByUserId: 1
+                      completedByUserName: Sam
+                      exceptionCount: 0
+                      flaggedChecklistCount: 0
+                      linkedTaskInstanceId: 4
+                      recordLogExceptionCount: 0
+                      requiresPin: true
+                      siteExternalId: null
+                      siteName: Angel
+                      status: completedEarly
+                      tags:
+                      - tagId: 1
+                        label: Bar
+                      taskInstanceName: Clean bartop
+                    page:
+                      nextCursor: null
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaskInstance'
+                  page:
+                    type: object
+                    properties:
+                      nextCursor:
+                        type: string
+                        nullable: true
+                        description: Cursor for the next page of results
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error422'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startDate:
+                  type: string
+                  format: date
+                  description: Start date for task instances
+                endDate:
+                  type: string
+                  format: date
+                  description: End date for task instances
+                taskTemplateIds:
+                  type: array
+                  items:
+                    type: integer
+                  description: Task template IDs to filter task instances by
+                pageStart:
+                  type: string
+                  description: A paging cursor to get the next page of results
+                  example: MTIzNA==
+              required:
+              - startDate
+              - endDate
+              - taskTemplateIds
+        required: true
+  /public/task_reports/v1/record_logs:
+    post:
+      summary: Record logs
+      tags:
+      - Task Reports
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Record logs retrieved successfully
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    data:
+                      '3':
+                      - recordLogId: 1
+                        records:
+                        - Visitor Name:
+                            id: '1744042652672'
+                            name: Visitor Name
+                            value: Bob
+                            type: text
+                            hasError: false
+                            errors: []
+                          Visitor Type:
+                            id: '1744042651941'
+                            name: Visitor Type
+                            value: Corporate
+                            type: options
+                            hasError: false
+                            errors: []
+                          Time of arrival:
+                            id: '17440426509431'
+                            name: Time of arrival
+                            value: '13:30'
+                            type: dateTime
+                            hasError: false
+                            errors: []
+                          hasError: false
+                        - Visitor Name:
+                            id: '1744042652672'
+                            name: Visitor Name
+                            value: Sarah
+                            type: text
+                            hasError: false
+                            errors: []
+                          Visitor Type:
+                            id: '1744042651941'
+                            name: Visitor Type
+                            value: Customer
+                            type: options
+                            hasError: false
+                            errors: []
+                          Time of arrival:
+                            id: '17440426509431'
+                            name: Time of arrival
+                            value: '11:00'
+                            type: dateTime
+                            hasError: false
+                            errors: []
+                          hasError: false
+                        - Visitor Name:
+                            id: '1744042652672'
+                            name: Visitor Name
+                            value: Sam
+                            type: text
+                            hasError: false
+                            errors: []
+                          Visitor Type:
+                            id: '1744042651941'
+                            name: Visitor Type
+                            value: null
+                            type: options
+                            hasError: false
+                            errors: []
+                          Time of arrival:
+                            id: '17440426509431'
+                            name: Time of arrival
+                            value: null
+                            type: dateTime
+                            hasError: false
+                            errors: []
+                          hasError: false
+                        hasError: false
+              schema:
+                type: object
+                properties:
+                  data:
+                    properties:
+                      '{taskInstanceId}':
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/RecordLog'
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error422'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taskInstanceIds:
+                  type: array
+                  items:
+                    type: integer
+                  description: The task instance IDs to get record logs for. Maximum of 1000 IDs in a single request.
+              required:
+              - taskInstanceIds
+components:
+  schemas:
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    RecordLog:
+      title: Record log
+      type: object
+      description: A record log object
+      properties:
+        recordLogId:
+          type: integer
+          description: The ID of the record log
+        records:
+          type: array
+          description: An array of the data from each record in the record log
+          items:
+            type: object
+            properties:
+              '{fieldName}':
+                type: object
+                description: An object representing a field, with the key being the name of the field
+                properties:
+                  id:
+                    type: string
+                    description: Identifier for the field. Unique per record log. Used to identify comments left on the field
+                  name:
+                    type: string
+                    description: Name of the field
+                  value:
+                    oneOf:
+                    - type: string
+                    - type: number
+                    - type: array
+                      items:
+                        type: string
+                    description: Value of the field - this is either a string, number, or an array of uploaded file URLs
+                  type:
+                    type: string
+                    description: "Type of the field\nPossible values:\n- text\n- options\n- dateTime \n- number\n- file"
+                    enum:
+                    - text
+                    - options
+                    - dateTime
+                    - number
+                    - file
+                  hasError:
+                    type: boolean
+                    description: A boolean representing whether this field has any errors
+                  errors:
+                    type: array
+                    description: An array of error messages for this field
+                    items:
+                      type: string
+                  score:
+                    type: integer
+                    nullable: true
+                    description: Optional value representing the score of the field. Unscored fields do not have this property
+                  scoreOutOf:
+                    type: integer
+                    nullable: true
+                    description: Optional value representing the total possible score of the field. Unscored fields do not have this property
+                  percentageScore:
+                    type: number
+                    nullable: true
+                    description: Optional value representing the percentage of score out of total possible score. Unscored fields do not have this property
+                required:
+                - id
+                - name
+                - value
+                - type
+                - hasError
+                - errors
+              '{sectionTitle}':
+                type: object
+                description: Sections are keyed by the section title and contain all fields for that section
+                properties:
+                  '{fieldName}':
+                    type: object
+                    description: An object representing a field, with the key being the name of the field
+                    properties:
+                      id:
+                        type: string
+                        description: Identifier for the field. Unique per record log. Used to identify comments left on the field
+                      name:
+                        type: string
+                        description: Name of the field
+                      value:
+                        oneOf:
+                        - type: string
+                        - type: number
+                        - type: array
+                          items:
+                            type: string
+                        description: Value of the field - this is either a string, number, or an array of uploaded file URLs
+                      type:
+                        type: string
+                        description: "Type of the field\nPossible values:\n- text\n- options\n- dateTime \n- number\n- file"
+                        enum:
+                        - text
+                        - options
+                        - dateTime
+                        - number
+                        - file
+                      hasError:
+                        type: boolean
+                        description: A boolean representing whether this field has any errors
+                      errors:
+                        type: array
+                        description: An array of error messages for this field
+                        items:
+                          type: string
+                      score:
+                        type: integer
+                        nullable: true
+                        description: Optional value representing the score of the field. Unscored fields do not have this property
+                      scoreOutOf:
+                        type: integer
+                        nullable: true
+                        description: Optional value representing the total possible score of the field. Unscored fields do not have this property
+                      percentageScore:
+                        type: number
+                        nullable: true
+                        description: Optional value representing the percentage of score out of total possible score. Unscored fields do not have this property
+                    required:
+                    - id
+                    - name
+                    - value
+                    - type
+                    - hasError
+                    - errors
+                  hasError:
+                    type: boolean
+                    description: A boolean representing whether any fields in this section have errors
+                  score:
+                    type: integer
+                    nullable: true
+                    description: Optional value representing the score of the section. Unscored sections do not have this property
+                  scoreOutOf:
+                    type: integer
+                    nullable: true
+                    description: Optional value representing the total possible score of the section. Unscored sections do not have this property
+                  percentageScore:
+                    type: number
+                    nullable: true
+                    description: Optional value representing the percentage of section score out of total possible section score. Unscored sections do not have this property
+                required:
+                - '{fieldName}'
+                - hasError
+              lastUpdatedAt:
+                type: string
+                description: ISO8601 datetime string representing the last time this record was updated
+                format: date-time
+              hasError:
+                type: boolean
+                description: A boolean representing whether any fields in this record have errors
+              score:
+                type: integer
+                nullable: true
+                description: Optional value representing the score of the record. Unscored records do not have this property
+              scoreOutOf:
+                type: integer
+                nullable: true
+                description: Optional value representing the total possible score of  the record. Unscored records do not have this property
+              percentageScore:
+                type: number
+                nullable: true
+                description: Optional value representing the percentage of record score out of total possible record score. Unscored records do not have this property
+            required:
+            - '{fieldName}'
+            - '{sectionTitle}'
+            - hasError
+        hasError:
+          type: boolean
+          description: A boolean representing if any field in the record log has errors
+        score:
+          type: integer
+          nullable: true
+          description: Optional value representing the score of the record log. Unscored record logs do not have this property
+        scoreOutOf:
+          type: integer
+          nullable: true
+          description: Optional value representing the total possible score of the record log. Unscored record logs do not have this property
+        percentageScore:
+          type: number
+          nullable: true
+          description: Optional value representing the percentage of record log score out of total possible record log score. Unscored record logs do not have this property
+      required:
+      - recordLogId
+      - records
+      - hasError
+    ChecklistItem:
+      type: object
+      description: A checklist item object
+      properties:
+        checkId:
+          type: integer
+          description: Unique identifier for the checklist item
+          example: 0
+        checkName:
+          type: string
+          description: The name of the checklist item
+          example: Check the fridge
+        status:
+          type: string
+          description: 'The status of the checklist item. Possible values: unchecked, done, notApplicable, notDone, neverApplicable'
+          enum:
+          - unchecked
+          - done
+          - notApplicable
+          - notDone
+          - neverApplicable
+          example: done
+        completedDatetime:
+          type: string
+          format: date-time
+          nullable: true
+          description: ISO8601 datetime representing the time the checklist item was completed. Null if not completed
+          example: '2023-05-23T14:15:22Z'
+        completedByUserName:
+          type: string
+          nullable: true
+          description: The name of the user who completed the checklist item. Null if not completed
+          example: Jane
+        completedByUserId:
+          type: integer
+          nullable: true
+          description: The ID of the user who completed the checklist item. Null if not completed
+          example: 144
+        header:
+          type: string
+          nullable: true
+          description: The name of the header the checklist item is under. Null if not under a header
+          example: Fridge checks
+      required:
+      - checkId
+      - checkName
+      - status
+    Error422:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unprocessable request
+              detail:
+                type: string
+                example: Invalid IDs
+              status:
+                type: integer
+                example: 422
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Comment:
+      type: object
+      description: A comment object
+      properties:
+        content:
+          type: string
+          description: The text of the comment
+          example: Late due to fire alarm
+        attachmentUrls:
+          type: array
+          description: An array of the URLs of any files attached to the comment
+          items:
+            type: string
+            example: http://www.example.com/image
+        commentedDateTime:
+          type: string
+          format: date-time
+          description: An ISO8601 datetime representing the time the comment was posted
+          example: '2025-03-23T04:15:22Z'
+        commentedByUserName:
+          type: string
+          description: The name of the user who posted the comment
+          example: Sarah
+        commentedByUserId:
+          type: integer
+          description: The ID of the user who posted the comment
+          example: 123
+        checkId:
+          type: integer
+          nullable: true
+          description: Optional field. The ID of the checklist item the comment was posted on (if a checklist level comment)
+          example: 1499547660
+        recordLogRowIndex:
+          type: integer
+          nullable: true
+          description: Optional field. The index of the record log record the comment was posted on (if a record log level comment)
+          example: 0
+        recordLogFieldId:
+          type: integer
+          nullable: true
+          description: Optional field. The ID of the record log the comment was posted on (if a record log level comment)
+          example: '1687490122617'
+      required:
+      - content
+      - attachmentUrls
+      - commentedDateTime
+      - commentedByUserName
+      - commentedByUserId
+    TaskInstance:
+      type: object
+      description: An object representing a task instance
+      properties:
+        taskInstanceId:
+          type: integer
+          description: Unique identifier for the task instance
+        taskInstanceName:
+          type: string
+          description: Name of the task instance
+        taskTemplateId:
+          type: integer
+          description: ID of the task template
+        dueByDatetime:
+          type: string
+          format: date_time
+          description: ISO8601 datetime when the task is due by
+        dueFromDatetime:
+          type: string
+          format: date_time
+          description: ISO8601 datetime when the task is due from
+        completedDatetime:
+          type: string
+          format: date_time
+          nullable: true
+          description: ISO8601 datetime when the task was completed, null if not completed
+        completedByUserId:
+          type: integer
+          nullable: true
+          description: ID of the user who completed the task, null if not completed
+        completedByUserName:
+          type: string
+          nullable: true
+          description: Name of the user who completed the task, null if not completed
+        taskType:
+          type: string
+          description: Type of task (e.g., repeat, one-time)
+        areaId:
+          type: integer
+          description: ID of the area associated with the task
+        areaName:
+          type: string
+          description: Name of the area associated with the task
+        siteId:
+          type: integer
+          description: ID of the site where the task is performed
+        siteName:
+          type: string
+          description: Name of the site where the task is performed
+        flaggedChecklistCount:
+          type: integer
+          description: Number of flagged checklist items
+        addedChecklistCount:
+          type: integer
+          description: Number of added checklist items
+        recordLogExceptionCount:
+          type: integer
+          description: Number of record log exceptions
+        exceptionTypes:
+          type: array
+          items:
+            type: string
+          description: Types of exceptions recorded for the task
+        requiresPin:
+          type: boolean
+          description: Indicates whether a PIN is required to complete the task
+        priority:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          description: Priority level of the task
+        exceptionCount:
+          type: integer
+          description: Total number of exceptions recorded
+        actionTaskInstanceIds:
+          type: array
+          items:
+            type: integer
+          description: IDs of related action tasks
+        linkedTaskInstanceId:
+          type: integer
+          nullable: true
+          description: ID of a linked task instance, if applicable
+        businessDates:
+          type: array
+          items:
+            type: string
+            format: date
+          description: Array of business dates associated with the task
+        status:
+          type: string
+          enum:
+          - pending
+          - inProgress
+          - completed
+          - completedEarly
+          - completedLate
+          - failed
+          description: Current status of the task instance
+      required:
+      - taskInstanceId
+      - taskInstanceName
+      - taskTemplateId
+      - dueByDatetime
+      - taskType
+      - siteId
+      - siteName
+      - status
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      name: API_KEY
+      in: header
+externalDocs:
+  description: How to obtain an API key
+  url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api
