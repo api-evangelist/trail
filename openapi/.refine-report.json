@@ -1,0 +1,28 @@
+{
+  "provider": "trail",
+  "sources": [
+    "trail-areas-api-openapi.yml",
+    "trail-scores-api-openapi.yml",
+    "trail-sites-api-openapi.yml",
+    "trail-tags-api-openapi.yml",
+    "trail-task-instances-api-openapi.yml",
+    "trail-task-reports-api-openapi.yml",
+    "trail-task-templates-api-openapi.yml",
+    "trail-tasks-api-openapi.yml"
+  ],
+  "outputs": [
+    "trail-areas-api-openapi.yml",
+    "trail-scores-api-openapi.yml",
+    "trail-sites-api-openapi.yml",
+    "trail-tags-api-openapi.yml",
+    "trail-task-instances-api-openapi.yml",
+    "trail-task-reports-api-openapi.yml",
+    "trail-task-templates-api-openapi.yml",
+    "trail-tasks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

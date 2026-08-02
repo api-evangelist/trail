@@ -1,0 +1,449 @@
+---
+openapi: 3.0.1
+info:
+  title: Evo API
+  version: v1
+  description: |
+    You can use this API to query and manage sites, task templates, and tasks.
+
+    OAuth2 authentication is required to authorise requests. The token can be obtained from the Identity Provider.
+externalDocs:
+  description: How to obtain an API key
+  url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api
+paths:
+  "/evo_api/sites":
+    get:
+      tags:
+      - Sites
+      summary: Retrieves user sites
+      operationId: getSites
+      security:
+      - oauth2:
+        - openid
+        - profile
+        - email
+        - access.trail.api
+      responses:
+        '200':
+          description: sites retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Site"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error401"
+  "/evo_api/task_templates":
+    get:
+      tags:
+      - Task Templates
+      summary: Retrieves task templates
+      operationId: getTaskTemplates
+      security:
+      - oauth2:
+        - openid
+        - profile
+        - email
+        - access.trail.api
+      responses:
+        '200':
+          description: task templates retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/TaskTemplate"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error401"
+  "/evo_api/tasks":
+    get:
+      tags:
+      - Tasks
+      summary: Retrieves tasks
+      operationId: getTasks
+      security:
+      - oauth2:
+        - openid
+        - profile
+        - email
+        - access.trail.api
+      parameters:
+      - name: location_id
+        in: query
+        required: true
+        description: Location ID
+        schema:
+          type: integer
+      - name: task_template_id
+        in: query
+        required: true
+        description: Task template ID
+        schema:
+          type: integer
+      - name: date
+        in: query
+        required: true
+        description: Date (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: tasks retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Task"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error401"
+    post:
+      tags:
+      - Tasks
+      summary: Creates a task
+      operationId: createTask
+      security:
+      - oauth2:
+        - openid
+        - profile
+        - email
+        - access.trail.api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: One-off Cleaning
+                  description: Task name
+                description:
+                  type: string
+                  example: Clean the main areas
+                  description: Task description
+                checklist_items:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - Clean floors
+                  - Dust surfaces
+                  description: Array of checklist items
+                start_datetime:
+                  type: string
+                  format: date-time
+                  example: '2024-01-01T09:00:00Z'
+                  description: Task start time
+                end_datetime:
+                  type: string
+                  format: date-time
+                  example: '2024-01-01T10:00:00Z'
+                  description: Task end time
+                location_id:
+                  type: integer
+                  example: 1
+                  description: Location ID
+              required:
+              - name
+              - start_datetime
+              - end_datetime
+              - location_id
+      responses:
+        '201':
+          description: task created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Task"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error401"
+servers:
+- url: https://web.trailapp.com/api
+- url: https://us.trailapp.com/api
+  description: US
+security:
+- oauth2:
+  - openid
+  - profile
+  - email
+  - access.trail.api
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://preprodidentity.accessacloud.com/connect/authorize
+          tokenUrl: "/api/evo_api/oauth/token"
+          scopes:
+            openid: OpenID
+            profile: Profile
+            email: Email
+            access.trail.api: Trail API
+  schemas:
+    Site:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Site ID
+        name:
+          type: string
+          example: Oxford
+          description: Site name
+        area_name:
+          type: string
+          example: England
+          description: Area name
+        address:
+          type: string
+          example: 123 Main Street
+          description: Street address
+        city:
+          type: string
+          example: Oxford
+          description: City
+        state:
+          type: string
+          example: Oxfordshire
+          description: State/Province
+        zipcode:
+          type: string
+          example: OX1 1AA
+          description: Postal/ZIP code
+        country:
+          type: string
+          example: United Kingdom
+          description: Country
+        latitude:
+          type: number
+          format: float
+          example: 51.752
+          description: Latitude coordinate
+        longitude:
+          type: number
+          format: float
+          example: -1.2577
+          description: Longitude coordinate
+        status:
+          type: string
+          example: active
+          description: Site status
+        timezone:
+          type: string
+          example: Europe/London
+          description: Timezone
+      required:
+      - id
+      - name
+      - area_name
+    TaskTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Task template ID
+        name:
+          type: string
+          example: Daily Cleaning
+          description: Task template name
+        notes:
+          type: string
+          example: Clean the main areas
+          description: Task description/notes
+        template_type:
+          type: string
+          example: single
+          description: Template type (single, recurring, on_demand, etc.)
+        status:
+          type: string
+          example: published
+          description: Template status
+        priority:
+          type: string
+          example: medium
+          description: Task priority (high, medium, low)
+        location_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 1
+          - 2
+          - 3
+          description: Array of location IDs
+        subtasks:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Subtask"
+          description: Array of subtasks
+      required:
+      - id
+      - name
+      - template_type
+      - status
+    Subtask:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Subtask ID
+        name:
+          type: string
+          example: Clean floors
+          description: Subtask name
+        completion_value:
+          type: string
+          example: unchecked
+          description: Subtask completion value
+        position:
+          type: integer
+          example: 0
+          description: Subtask position
+          nullable: true
+      required:
+      - id
+      - name
+      - completion_value
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Task ID
+        name:
+          type: string
+          example: Daily Cleaning
+          description: Task name
+        notes:
+          type: string
+          example: Clean the main areas
+          description: Task description/notes
+        due_from_datetime:
+          type: string
+          format: date-time
+          example: '2024-01-01T09:00:00Z'
+          description: Task start time
+        due_by_datetime:
+          type: string
+          format: date-time
+          example: '2024-01-01T10:00:00Z'
+          description: Task end time
+        completed_at:
+          type: string
+          format: date-time
+          example: '2024-01-01T09:30:00Z'
+          description: Task completion time
+          nullable: true
+        completed_by:
+          type: string
+          example: John Doe
+          description: Name of user who completed the task
+          nullable: true
+        status:
+          type: string
+          example: completed
+          description: Task status
+        subtasks:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Subtask"
+          description: Array of subtasks
+      required:
+      - id
+      - name
+      - status
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors

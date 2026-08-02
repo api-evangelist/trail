@@ -1,0 +1,117 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ (schema properties and id-reference fields across all 8 specs)
+description: >-
+  Entity-relationship graph for the Trail platform, derived from the schemas in
+  the published OpenAPI documents. IDs are plain integers (no prefixed ID
+  scheme).
+entities:
+  - name: Area
+    source: openapi/trail_areas_v1.yaml
+    fields: [id, name]
+  - name: Site
+    source: openapi/trail_sites_v1.yaml
+    fields: [id, name, status, external_id, area_id]
+  - name: Tag
+    source: openapi/trail_tags_v1.yaml
+    fields: [id, label]
+  - name: TaskTemplate
+    source: openapi/trail_task_templates_v1.yaml
+    fields: [id, name, status, type]
+  - name: TaskInstance
+    source: openapi/trail_task_reports_v1.yaml
+    fields: [taskInstanceId, taskTemplateId, siteId, areaId, status, dueByDatetime, dueFromDatetime, completedDatetime, completedByUserId]
+  - name: ChecklistItem
+    source: openapi/trail_task_reports_v1.yaml
+    fields: [checkId, checkName, status, completedDatetime, completedByUserId, header]
+  - name: Comment
+    source: openapi/trail_task_reports_v1.yaml
+    fields: [content, attachmentUrls, commentedByUserId, checkId, recordLogRowIndex, recordLogFieldId]
+  - name: RecordLog
+    source: openapi/trail_task_reports_v1.yaml
+    fields: [recordLogId, records, hasError, score, scoreOutOf, percentageScore]
+  - name: Score
+    source: openapi/trail_scores_v1.yaml
+    fields: [id, level, name, average, scores]
+  - name: Subtask
+    source: openapi/trail_evo_api_v1.yaml
+    fields: [id, name, completion_value, position]
+  - name: User
+    source: implied (completedByUserId/commentedByUserId reference fields)
+    fields: [id, name]
+relationships:
+  - from: Site
+    to: Area
+    type: belongs_to
+    via: area_id
+  - from: TaskInstance
+    to: TaskTemplate
+    type: belongs_to
+    via: taskTemplateId
+  - from: TaskInstance
+    to: Site
+    type: belongs_to
+    via: siteId
+  - from: TaskInstance
+    to: Area
+    type: belongs_to
+    via: areaId
+  - from: TaskInstance
+    to: Tag
+    type: has_many
+    via: tags[]
+  - from: TaskInstance
+    to: ChecklistItem
+    type: has_many
+    via: checklist[]
+  - from: TaskInstance
+    to: Comment
+    type: has_many
+    via: comments
+  - from: TaskInstance
+    to: RecordLog
+    type: has_many
+    via: recordLogs
+  - from: TaskInstance
+    to: TaskInstance
+    type: has_many
+    via: actionTaskInstanceIds[] (corrective actions raised from a task)
+  - from: TaskInstance
+    to: TaskInstance
+    type: belongs_to
+    via: linkedTaskInstanceId
+  - from: TaskInstance
+    to: User
+    type: belongs_to
+    via: completedByUserId
+  - from: Comment
+    to: User
+    type: belongs_to
+    via: commentedByUserId
+  - from: Comment
+    to: ChecklistItem
+    type: belongs_to
+    via: checkId
+  - from: Comment
+    to: RecordLog
+    type: belongs_to
+    via: recordLogRowIndex + recordLogFieldId
+  - from: TaskTemplate
+    to: Subtask
+    type: has_many
+    via: subtasks[] (Evo API)
+  - from: TaskTemplate
+    to: Site
+    type: has_many
+    via: location_ids[] (Evo API)
+  - from: Score
+    to: Site
+    type: belongs_to
+    via: id + level=site
+  - from: Score
+    to: Area
+    type: belongs_to
+    via: id + level=area
+id_scheme:
+  style: integer
+  prefixes: none

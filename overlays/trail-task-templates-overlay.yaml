@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: Task Templates Overlay
+  version: 1.0.0
+extends: ../openapi/trail_task_templates_v1.yaml
+x-generated: '2026-07-21'
+x-method: generated
+x-source: API Evangelist enrichment pipeline — enhancements over openapi/trail_task_templates_v1.yaml
+actions:
+- target: $.info
+  update:
+    contact:
+      name: Trail Support
+      url: https://answers.trailapp.com/
+    x-apisjson-provider: trail
+- target: $.paths["/public/task_templates/v1/list"].get
+  update:
+    operationId: getTaskTemplatesList

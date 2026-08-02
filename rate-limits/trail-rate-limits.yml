@@ -1,0 +1,29 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Trail
+providerId: trail
+generated: '2026-07-21'
+method: searched
+created: '2026-07-21'
+modified: '2026-07-21'
+tags:
+  - Rate Limiting
+  - Hospitality
+description: >-
+  Trail public API rate limit as documented in the Task Reports OpenAPI
+  description: 60 requests (to any endpoint) per 60 seconds, per API key.
+  Trail recommends batching (e.g. requesting checklists for multiple task IDs
+  at once) to stay within the limit. Throttled requests return HTTP 429 with
+  the errors[] envelope.
+sources:
+  - https://web.trailapp.com/swagger/public/task_reports/v1/trail_task_reports_v1.yaml
+  - https://web.trailapp.com/api-docs/index.html
+responseCodes:
+  throttled: 429
+limits:
+  - name: All public API endpoints
+    scope: api_key
+    metric: requests_per_minute
+    limit: 60
+    timeFrame: minute

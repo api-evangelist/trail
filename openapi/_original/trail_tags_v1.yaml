@@ -1,0 +1,164 @@
+---
+openapi: 3.0.1
+info:
+  title: Tags
+  version: v1
+  description: |
+    You can use this API to query details of your tags - labels you can use to categorize tasks.
+    [Learn more about tags](https://answers.trailapp.com/en/articles/359417-using-tags-to-group-similar-tasks).
+
+    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
+externalDocs:
+  description: How to obtain an API key
+  url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api
+paths:
+  "/public/tags/v1/list":
+    get:
+      summary: Retrieves tags
+      tags:
+      - Tags
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Tags retrieved
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    data:
+                    - id: 1
+                      label: Bar
+                    - id: 2
+                      label: Kitchen
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/Tag"
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error401"
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error429"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error500"
+servers:
+- url: https://web.trailapp.com/api
+- url: https://us.trailapp.com/api
+  description: US
+components:
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      name: API_KEY
+      in: header
+  schemas:
+    Tag:
+      type: object
+      description: An object representing a summary of a tag - the model that represents
+        the tags (labels you can use to categorize tasks) in your organisation
+      properties:
+        id:
+          type: integer
+          example: 457
+          description: Unique identifier for the tag
+        label:
+          type: string
+          example: Back of house
+          description: Label for the tag
+      required:
+      - id
+      - label
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors

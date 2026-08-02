@@ -1,0 +1,14 @@
+{
+  "repo": "trail",
+  "feeds": [
+    {
+      "source": "https://answers.trailapp.com/",
+      "feed_url": "https://answers.trailapp.com/feed.xml",
+      "title": "",
+      "saved": 5,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 5,
+  "fetched": "2026-08-01T15:49:00Z"
+}

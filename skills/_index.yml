@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/ (operations grounded in the published Trail OpenAPI documents)
+description: >-
+  Packaged Agent Skills for the marquee Trail API flows. No provider-published
+  skills or AGENTS.md were found (docs, help centre, GitHub org trailsuite);
+  these are generated from the real operations in openapi/.
+skills:
+  - name: trail-pull-task-reports
+    file: trail-pull-task-reports.md
+    api: trail:trail-task-reports-api
+    description: Pull task instances, checklists, record logs and comments to build a bespoke compliance report.
+  - name: trail-trigger-task
+    file: trail-trigger-task.md
+    api: trail:trail-task-instances-api
+    description: Automatically create a task in Trail from an external system via the Task Instances API or Evo API.

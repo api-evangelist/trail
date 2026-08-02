@@ -1,0 +1,53 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ + https://answers.trailapp.com/ docs
+description: >-
+  Cross-cutting standards conformance for the Trail APIs, derived from the
+  published OpenAPI documents and the help-centre documentation. conforms is
+  asserted only where there is direct evidence.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      The Evo API declares an oauth2 authorizationCode flow
+      (authorizationUrl https://preprodidentity.accessacloud.com/connect/authorize,
+      tokenUrl /api/evo_api/oauth/token) in openapi/trail_evo_api_v1.yaml.
+  - id: oidc
+    conforms: true
+    evidence: >-
+      The Evo API OAuth2 flow requests openid, profile and email scopes against
+      the Access Identity /connect/authorize endpoint (IdentityServer-style
+      OpenID Connect provider).
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors use a custom errors[] envelope (title/detail/status) with
+      application/json, not application/problem+json problem details.
+  - id: pagination
+    conforms: false
+    evidence: >-
+      No pagination parameters (page/cursor/limit/offset) are declared on any
+      list operation in the eight OpenAPI documents.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency key header or idempotent-retry semantics documented.
+  - id: json:api
+    conforms: false
+    evidence: >-
+      The errors[] array resembles JSON:API error objects but responses do not
+      use the JSON:API media type or data/document structure.
+  - id: scim
+    conforms: false
+    evidence: No SCIM user-provisioning surface documented.
+  - id: odata
+    conforms: false
+    evidence: No OData conventions present.
+  - id: fhir
+    conforms: false
+    evidence: Not a healthcare API; no FHIR surface.
+  - id: fapi
+    conforms: false
+    evidence: No FAPI profile claimed; not a financial-grade API.
+  - id: psd2
+    conforms: false
+    evidence: Not a payments API; PSD2 not applicable.

@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: https://answers.trailapp.com/en/articles/14470671-recent-releases
+description: >-
+  Trail publishes rolling release notes in its help centre (Release notes
+  collection). Entries are narrative product updates without version numbers
+  or per-entry dates; captured here as an undated recent window, most recent
+  first as presented by Trail.
+scheme: rolling-release-notes
+current_version: null
+docs: https://answers.trailapp.com/en/collections/19359271-release-notes
+entries:
+  - title: The Areas page has moved
+    type: change
+    highlights:
+      - Sites and areas now live together in Site Settings.
+  - title: Track corrective actions back to their source in Task Reports
+    type: addition
+    highlights:
+      - Task Reports now shows which corrective actions were raised from which tasks, with links for context.
+  - title: Export photos in PDF Reports
+    type: addition
+    highlights:
+      - Exported PDF reports now include photos from comments, inline comments, and Record Log fields.
+  - title: Raise a callout in Access Maintain without leaving Trail
+    type: addition
+    highlights:
+      - Access Maintain callouts can be built directly into task workflows.
+  - title: Trail's colour palette has been updated
+    type: change
+    highlights:
+      - Visual refresh aligning Trail with other Access modules; no functional changes.
+  - title: Location Verification for Task Completion
+    type: addition
+    highlights:
+      - Tasks can record whether the completing user was on-site, off-site, or undetermined.
+  - title: Corrective Actions - Source Context
+    type: addition
+    highlights:
+      - Corrective actions display the section and question they were raised from across app, reports and exports.
+  - title: Custom Exception Messaging on Required Actions
+    type: fix
+    highlights:
+      - Custom exception messaging now also appears when a corrective action is required (mandatory).
+breaking_changes_recent: false

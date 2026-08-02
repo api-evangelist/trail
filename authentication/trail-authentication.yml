@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trail_areas_v1.yaml, openapi/trail_evo_api_v1.yaml, openapi/trail_scores_v1.yaml,
+  openapi/trail_sites_v1.yaml, openapi/trail_tags_v1.yaml, openapi/trail_task_instances_v1.yaml,
+  openapi/trail_task_reports_v1.yaml, openapi/trail_task_templates_v1.yaml
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: API_KEY
+  type: apiKey
+  in: header
+  parameter: API_KEY
+  sources:
+  - openapi/trail_areas_v1.yaml
+  - openapi/trail_scores_v1.yaml
+  - openapi/trail_sites_v1.yaml
+  - openapi/trail_tags_v1.yaml
+  - openapi/trail_task_instances_v1.yaml
+  - openapi/trail_task_reports_v1.yaml
+  - openapi/trail_task_templates_v1.yaml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://preprodidentity.accessacloud.com/connect/authorize
+    tokenUrl: /api/evo_api/oauth/token
+    scopes: 4
+  sources:
+  - openapi/trail_evo_api_v1.yaml

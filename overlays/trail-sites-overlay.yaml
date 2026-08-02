@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: Sites Overlay
+  version: 1.0.0
+extends: ../openapi/trail_sites_v1.yaml
+x-generated: '2026-07-21'
+x-method: generated
+x-source: API Evangelist enrichment pipeline — enhancements over openapi/trail_sites_v1.yaml
+actions:
+- target: $.info
+  update:
+    contact:
+      name: Trail Support
+      url: https://answers.trailapp.com/
+    x-apisjson-provider: trail
+- target: $.paths["/public/sites/v1/list"].get
+  update:
+    operationId: getSitesList

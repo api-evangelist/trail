@@ -1,0 +1,15 @@
+overlay: 1.0.0
+info:
+  title: Evo API Overlay
+  version: 1.0.0
+extends: ../openapi/trail_evo_api_v1.yaml
+x-generated: '2026-07-21'
+x-method: generated
+x-source: API Evangelist enrichment pipeline — enhancements over openapi/trail_evo_api_v1.yaml
+actions:
+- target: $.info
+  update:
+    contact:
+      name: Trail Support
+      url: https://answers.trailapp.com/
+    x-apisjson-provider: trail

@@ -1,25 +1,228 @@
 aid: trail
 name: Trail
-description: Trail is a company surfaced as a portfolio company of seedcamp and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Trail is a digital checklist and work management platform for hospitality and leisure teams,
+  now part of The Access Group (originally Trailsuite Ltd, a Seedcamp portfolio company). Trail digitises
+  daily operations — food safety checks, brand standards, compliance logs and task management — across
+  sites, and publishes a set of API-key-secured public APIs (Task Reports, Task Instances, Task Templates,
+  Sites, Areas, Tags, Scores) plus an OAuth2-secured Evo API, documented with OpenAPI at web.trailapp.com/api-docs.
 url: https://raw.githubusercontent.com/api-evangelist/trail/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/66f405a237adee7cf0668f38/67257ad8aa5f301b38dcd1af_transparent.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - seedcamp
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: full
+x-tier-reason: public-api-provider
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Hospitality
+- Checklists
+- Task Management
+- Compliance
+- Food Safety
+- Operations
+apis:
+- aid: trail:trail-areas-api
+  name: Trail Areas API
+  description: The Areas API from Trail — 1 operation(s) for areas.
+  humanURL: https://web.trailapp.com/api-docs/index.html
+  baseURL: https://web.trailapp.com/api
+  tags:
+  - Areas
+  properties:
+  - type: OpenAPI
+    url: openapi/trail-areas-api-openapi.yml
+  - type: Documentation
+    url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+  - type: Documentation
+    url: >-
+      https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api
+- aid: trail:trail-scores-api
+  name: Trail Scores API
+  description: The Scores API from Trail — 1 operation(s) for scores.
+  humanURL: https://web.trailapp.com/api-docs/index.html
+  baseURL: https://web.trailapp.com/api
+  tags:
+  - Scores
+  properties:
+  - type: OpenAPI
+    url: openapi/trail-scores-api-openapi.yml
+  - type: Documentation
+    url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+  - type: Documentation
+    url: >-
+      https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api
+- aid: trail:trail-sites-api
+  name: Trail Sites API
+  description: The Sites API from Trail — 2 operation(s) for sites.
+  humanURL: https://web.trailapp.com/api-docs/index.html
+  baseURL: https://web.trailapp.com/api
+  tags:
+  - Sites
+  properties:
+  - type: OpenAPI
+    url: openapi/trail-sites-api-openapi.yml
+  - type: Documentation
+    url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+  - type: Documentation
+    url: >-
+      https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api
+- aid: trail:trail-tags-api
+  name: Trail Tags API
+  description: The Tags API from Trail — 1 operation(s) for tags.
+  humanURL: https://web.trailapp.com/api-docs/index.html
+  baseURL: https://web.trailapp.com/api
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/trail-tags-api-openapi.yml
+  - type: Documentation
+    url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+  - type: Documentation
+    url: >-
+      https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api
+- aid: trail:trail-task-instances-api
+  name: Trail Task Instances API
+  description: The Task Instances API from Trail — 2 operation(s) for task instances.
+  humanURL: https://web.trailapp.com/api-docs/index.html
+  baseURL: https://web.trailapp.com/api
+  tags:
+  - Task Instances
+  properties:
+  - type: OpenAPI
+    url: openapi/trail-task-instances-api-openapi.yml
+  - type: Documentation
+    url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+  - type: Documentation
+    url: >-
+      https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api
+- aid: trail:trail-task-reports-api
+  name: Trail Task Reports API
+  description: The Task Reports API from Trail — 4 operation(s) for task reports.
+  humanURL: https://web.trailapp.com/api-docs/index.html
+  baseURL: https://web.trailapp.com/api
+  tags:
+  - Task Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/trail-task-reports-api-openapi.yml
+  - type: Documentation
+    url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+  - type: Documentation
+    url: >-
+      https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api
+- aid: trail:trail-task-templates-api
+  name: Trail Task Templates API
+  description: The Task Templates API from Trail — 2 operation(s) for task templates.
+  humanURL: https://web.trailapp.com/api-docs/index.html
+  baseURL: https://web.trailapp.com/api
+  tags:
+  - Task Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/trail-task-templates-api-openapi.yml
+  - type: Documentation
+    url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+  - type: Documentation
+    url: >-
+      https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api
+- aid: trail:trail-tasks-api
+  name: Trail Tasks API
+  description: The Tasks API from Trail — 1 operation(s) for tasks.
+  humanURL: https://web.trailapp.com/api-docs/index.html
+  baseURL: https://web.trailapp.com/api
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/trail-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+  - type: Documentation
+    url: >-
+      https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/trail-domain-security.yml
+- type: OAuthScopes
+  url: scopes/trail-scopes.yml
+- type: Authentication
+  url: authentication/trail-authentication.yml
 - type: Website
-  url: http://trailapp.com
+  url: https://trailapp.com
+- type: Documentation
+  url: https://web.trailapp.com/api-docs/index.html
+- type: APIReference
+  url: https://web.trailapp.com/api-docs/index.html
+- type: GettingStarted
+  url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+- type: Support
+  url: https://answers.trailapp.com/
+- type: HelpCenter
+  url: https://answers.trailapp.com/
+- type: Blog
+  url: https://trailapp.com/blog
+- type: Pricing
+  url: https://trailapp.com/pricing
+- type: SignUp
+  url: https://web.trailapp.com/check-out
+- type: Login
+  url: https://web.trailapp.com
+- type: TermsOfService
+  url: https://answers.trailapp.com/en/articles/5797043-trail-part-of-the-access-group-terms-conditions
+- type: GitHubOrganization
+  url: https://github.com/trailsuite
+- type: StatusPage
+  url: https://hospitality-theaccessgroup.statushub.io/
+- type: ChangeLog
+  url: https://answers.trailapp.com/en/collections/19359271-release-notes
+- type: ChangeLog
+  url: changelog/trail-changelog.yml
+- type: LLMsTxt
+  url: llms/trail-llms.txt
+- type: WellKnown
+  url: well-known/trail-well-known.yml
+- type: ErrorCatalog
+  url: errors/trail-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/trail-lifecycle.yml
+- type: Conformance
+  url: conformance/trail-conformance.yml
+- type: Conventions
+  url: conventions/trail-conventions.yml
+- type: RateLimits
+  url: rate-limits/trail-rate-limits.yml
+- type: MCPServer
+  url: mcp/trail-mcp.yml
+- type: DataModel
+  url: data-model/trail-data-model.yml
+- type: Examples
+  url: examples/trail-examples.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 33
+  pass: local-v1

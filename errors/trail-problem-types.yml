@@ -1,0 +1,69 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ (Error401/Error422/Error429/Error500 schemas across all 8 specs)
+description: >-
+  Error catalog for the Trail public APIs and Evo API, derived from the error
+  schemas declared in the published OpenAPI documents. Errors are returned as a
+  JSON envelope with an errors[] array; each error object carries title, detail
+  and status (required). Not RFC 9457 application/problem+json.
+format: custom-errors-array
+envelope:
+  field: errors
+  item_fields:
+    - title
+    - detail
+    - status
+problems:
+  - status: 401
+    title: Unauthorized
+    detail: API key is missing or invalid
+    remediation: >-
+      Generate a Trail API key from Company Settings (Task Reports API section)
+      and send it in the API_KEY request header; for the Evo API complete the
+      OAuth2 authorization-code flow against Access Identity.
+    sources:
+      - openapi/trail_areas_v1.yaml
+      - openapi/trail_scores_v1.yaml
+      - openapi/trail_sites_v1.yaml
+      - openapi/trail_tags_v1.yaml
+      - openapi/trail_task_instances_v1.yaml
+      - openapi/trail_task_reports_v1.yaml
+      - openapi/trail_task_templates_v1.yaml
+      - openapi/trail_evo_api_v1.yaml
+  - status: 422
+    title: Unprocessable Entity
+    detail: Request body failed validation
+    remediation: >-
+      Check the request body against the schema for the endpoint (Scores, Task
+      Instances and Task Reports POST routes declare 422 responses).
+    sources:
+      - openapi/trail_scores_v1.yaml
+      - openapi/trail_task_instances_v1.yaml
+      - openapi/trail_task_reports_v1.yaml
+  - status: 429
+    title: Too Many Requests
+    detail: Rate limit exceeded. Try again later.
+    remediation: >-
+      Endpoints are rate limited to 60 requests (to any endpoint) per 60
+      seconds; batch requests (e.g. multiple task IDs per checklist request)
+      instead of per-ID calls, and back off before retrying.
+    sources:
+      - openapi/trail_areas_v1.yaml
+      - openapi/trail_scores_v1.yaml
+      - openapi/trail_sites_v1.yaml
+      - openapi/trail_tags_v1.yaml
+      - openapi/trail_task_instances_v1.yaml
+      - openapi/trail_task_reports_v1.yaml
+      - openapi/trail_task_templates_v1.yaml
+  - status: 500
+    title: Internal Server Error
+    detail: An unexpected error occurred
+    remediation: Retry later; check the Access Hospitality StatusHub status page for incidents.
+    sources:
+      - openapi/trail_areas_v1.yaml
+      - openapi/trail_scores_v1.yaml
+      - openapi/trail_sites_v1.yaml
+      - openapi/trail_tags_v1.yaml
+      - openapi/trail_task_instances_v1.yaml
+      - openapi/trail_task_reports_v1.yaml
+      - openapi/trail_task_templates_v1.yaml

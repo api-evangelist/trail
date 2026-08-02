@@ -1,0 +1,61 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ + https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api
+description: >-
+  Cross-cutting request/response conventions for the Trail public APIs and the
+  Evo API, derived from the eight published OpenAPI documents and the help
+  centre. See also authentication/trail-authentication.yml,
+  errors/trail-problem-types.yml, lifecycle/trail-lifecycle.yml and
+  rate-limits/trail-rate-limits.yml.
+authentication:
+  style: >-
+    API_KEY header (apiKey, header name API_KEY) for the seven public APIs;
+    OAuth2 authorization-code via Access Identity for the Evo API.
+  key_issuance: >-
+    API keys are generated per user from Company Settings > Task Reports API
+    after Support enables the functionality; keys are user-specific and
+    Admin-level access is required.
+  reference: authentication/trail-authentication.yml
+content_type:
+  request_header: 'Content_Type: application/json (declared as a required header parameter on most operations)'
+  response: application/json
+versioning:
+  style: path
+  current: v1
+  pattern: /public/<resource>/v1/...
+  reference: lifecycle/trail-lifecycle.yml
+pagination:
+  style: none
+  evidence: No pagination parameters declared on list operations.
+batching:
+  supported: true
+  evidence: >-
+    Task Reports checklist requests accept multiple task IDs at once; docs
+    recommend batching to stay within rate limits.
+idempotency:
+  supported: false
+  evidence: No idempotency key mechanism documented.
+rate_limits:
+  limit: 60 requests per 60 seconds (to any endpoint), per key
+  signal: HTTP 429 with errors[] envelope
+  reference: rate-limits/trail-rate-limits.yml
+error_envelope:
+  shape: '{ "errors": [ { "title", "detail", "status" } ] }'
+  media_type: application/json
+  reference: errors/trail-problem-types.yml
+regions:
+  - server: https://web.trailapp.com/api
+    region: default (UK/EU)
+  - server: https://us.trailapp.com/api
+    region: US
+data_freshness:
+  task_reports: Data for the Task Reports API is refreshed twice daily.
+naming:
+  fields: >-
+    camelCase in Task Reports/Task Instances payloads (taskInstanceId,
+    dueByDatetime); snake_case in Evo API and Sites/Areas payloads
+    (area_id, due_by_datetime).
+request_id_tracing:
+  documented: false
+field_expansion:
+  documented: false

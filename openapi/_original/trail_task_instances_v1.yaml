@@ -1,0 +1,528 @@
+---
+openapi: 3.0.1
+info:
+  title: Task Instances
+  version: v1
+  description: |
+    This is the beta version of the Task Instances API. You can use this to create new task instances, using existing automated task templates.
+    [Learn more about automated tasks](https://answers.trailapp.com/en/articles/5264932-add-an-automated-task-with-zapier).
+
+    You can use our other APIs to obtain necessary IDs of [sites](/api-docs/index.html?urls.primaryName=Sites%20v1)
+    and [task templates](/api-docs/index.html?urls.primaryName=Task%20Templates%20v1).
+
+    An API_KEY header is required to authorise requests. You must have third party integration enabled to use this API.
+
+    The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
+externalDocs:
+  description: How to obtain an API key
+  url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api
+paths:
+  "/public/task_instances/v1/task_instances":
+    post:
+      summary: Task instances
+      tags:
+      - Task Instances
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '201':
+          description: Task instances created successfully
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    id: 2
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error401"
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error429"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error500"
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error422"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                siteId:
+                  type: integer
+                  description: ID for the site the task will be created on
+                  example: 5
+                taskTemplateId:
+                  type: integer
+                  description: Task template ID to use to create the task instance.
+                    This must be an automated, published template.
+                  example: 17
+                startDatetime:
+                  type: string
+                  description: Optional date time field, to set when the task will
+                    be due from, in the site's timezone. If blank, this will be set
+                    to the current time.
+                  example: 2025-04-20 13:30
+                endDate:
+                  type: string
+                  format: date
+                  example: '2025-05-23'
+                  description: Optional field - if set, the task's due date will be
+                    the end of the chosen day (this could be the following calendar
+                    date if the site closes at/after midnight). If blank, this will
+                    be determined by the task template's schedule. If the template
+                    has no schedule, it will default to a duration of 3 days.
+                description:
+                  type: string
+                  example: My API generated task
+                  description: Optional field, setting the description of the task.
+                    If blank, the description in the task template will be used.
+              required:
+              - siteId
+              - taskTemplateId
+        required: true
+  "/public/task_instances/v1/task_instances/{id}":
+    get:
+      summary: Retrieve task instance
+      tags:
+      - Task Instances
+      security:
+      - API_KEY: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the timeline task
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Task instance retrieved successfully
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    priority: medium
+                    actionTaskInstanceIds: []
+                    addedChecklistCount: 0
+                    areaId:
+                    areaName:
+                    businessDates:
+                    - '2025-07-14'
+                    completedByUserId:
+                    completedByUserName:
+                    exceptionCount: 0
+                    flaggedChecklistCount: 0
+                    linkedTaskInstanceId:
+                    recordLogExceptionCount: 0
+                    requiresPin: false
+                    siteExternalId:
+                    siteName: Runolfsson Group
+                    status: later
+                    tags: []
+                    taskInstanceName: Timeline Task
+                    checklist:
+                    - checkId: 1
+                      checkName: Check the fridge
+                      status: unchecked
+                      completedDatetime:
+                      completedByUserName:
+                      completedByUserId:
+                      header:
+                    comments:
+                      checklist:
+                      - checkId: 1
+                        content: Text
+                        attachmentUrls: []
+                        commentedDatetime: '2025-07-14T23:24:01.157Z'
+                        commentedByUserName: Org Admin 11
+                        commentedByUserId: 1
+                      recordLog:
+                      - recordLogRowIndex: 0
+                        recordLogFieldId: 1750793291901
+                        content: RecordLog comment
+                        attachmentUrls: []
+                        commentedDatetime: '2025-07-14T23:24:01.162Z'
+                        commentedByUserName: Org Admin 11
+                        commentedByUserId: 1
+                      task:
+                      - content: Task comment
+                        attachmentUrls: []
+                        commentedDatetime: '2025-07-14T23:24:01.000Z'
+                        commentedByUserName: Org Admin 11
+                        commentedByUserId: 1
+                    recordLogs:
+                      recordLogId: 1
+                      records:
+                      - My Field:
+                          id: '1750793291901'
+                          name: My Field
+                          value: c
+                          type: options
+                          hasError: false
+                          errors: []
+                        lastUpdatedAt: '2025-07-15T00:24:00+01:00'
+                        hasError: false
+                      hasError: false
+              schema:
+                "$ref": "#/components/schemas/ExtendedTaskInstance"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    errors:
+                    - title: Not authorised
+                      detail: Invalid API key
+                      status: 401
+servers:
+- url: https://web.trailapp.com/api
+- url: https://us.trailapp.com/api
+  description: US
+components:
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      name: API_KEY
+      in: header
+  schemas:
+    ExtendedTaskInstance:
+      type: object
+      properties:
+        priority:
+          type: string
+        actionTaskInstanceIds:
+          type: array
+          items:
+            type: integer
+        addedChecklistCount:
+          type: integer
+        areaId:
+          type: integer
+          nullable: true
+        areaName:
+          type: string
+          nullable: true
+        businessDates:
+          type: array
+          items:
+            type: string
+            format: date
+        completedByUserId:
+          type: integer
+          nullable: true
+        completedByUserName:
+          type: string
+          nullable: true
+        exceptionCount:
+          type: integer
+        flaggedChecklistCount:
+          type: integer
+        linkedTaskInstanceId:
+          type: integer
+          nullable: true
+        recordLogExceptionCount:
+          type: integer
+        requiresPin:
+          type: boolean
+        siteExternalId:
+          type: string
+          nullable: true
+        siteName:
+          type: string
+        status:
+          type: string
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              tagId:
+                type: integer
+              label:
+                type: string
+            required:
+            - tagId
+            - label
+        taskInstanceName:
+          type: string
+        checklist:
+          type: array
+          items:
+            type: object
+            properties:
+              checkId:
+                type: integer
+              checkName:
+                type: string
+              status:
+                type: string
+              completedDatetime:
+                type: string
+                format: date-time
+                nullable: true
+              completedByUserName:
+                type: string
+                nullable: true
+              completedByUserId:
+                type: integer
+                nullable: true
+              header:
+                type: string
+                nullable: true
+            required:
+            - checkId
+            - checkName
+            - status
+        comments:
+          type: object
+          properties:
+            checklist:
+              type: array
+              items:
+                type: object
+                properties:
+                  checkId:
+                    type: integer
+                  content:
+                    type: string
+                  attachmentUrls:
+                    type: array
+                    items:
+                      type: string
+                  commentedDatetime:
+                    type: string
+                    format: date-time
+                  commentedByUserName:
+                    type: string
+                  commentedByUserId:
+                    type: integer
+                required:
+                - checkId
+                - content
+                - attachmentUrls
+                - commentedDatetime
+                - commentedByUserName
+                - commentedByUserId
+            recordLog:
+              type: array
+              items:
+                type: object
+                properties:
+                  recordLogRowIndex:
+                    type: integer
+                  recordLogFieldId:
+                    type: integer
+                  content:
+                    type: string
+                  attachmentUrls:
+                    type: array
+                    items:
+                      type: string
+                  commentedDatetime:
+                    type: string
+                    format: date-time
+                  commentedByUserName:
+                    type: string
+                  commentedByUserId:
+                    type: integer
+                required:
+                - recordLogRowIndex
+                - recordLogFieldId
+                - content
+                - attachmentUrls
+                - commentedDatetime
+                - commentedByUserName
+                - commentedByUserId
+            task:
+              type: array
+              items:
+                type: object
+                properties:
+                  content:
+                    type: string
+                  attachmentUrls:
+                    type: array
+                    items:
+                      type: string
+                  commentedDatetime:
+                    type: string
+                    format: date-time
+                  commentedByUserName:
+                    type: string
+                  commentedByUserId:
+                    type: integer
+                required:
+                - content
+                - attachmentUrls
+                - commentedDatetime
+                - commentedByUserName
+                - commentedByUserId
+          required:
+          - checklist
+          - recordLog
+          - task
+        recordLogs:
+          type: object
+          properties:
+            recordLogId:
+              type: integer
+            hasError:
+              type: boolean
+            records:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+          required:
+          - recordLogId
+          - hasError
+          - records
+      required:
+      - priority
+      - actionTaskInstanceIds
+      - addedChecklistCount
+      - businessDates
+      - exceptionCount
+      - flaggedChecklistCount
+      - recordLogExceptionCount
+      - requiresPin
+      - siteName
+      - status
+      - tags
+      - taskInstanceName
+      - checklist
+      - comments
+      - recordLogs
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error422:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unprocessable request
+              detail:
+                type: string
+                example: Invalid IDs
+              status:
+                type: integer
+                example: 422
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors

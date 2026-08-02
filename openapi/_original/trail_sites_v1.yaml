@@ -1,0 +1,200 @@
+---
+openapi: 3.0.1
+info:
+  title: Sites
+  version: v1
+  description: |
+    You can use this API to query details of your sites.
+    [Learn more about sites](https://answers.trailapp.com/en/articles/923110-creating-and-managing-sites).
+
+    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
+externalDocs:
+  description: How to obtain an API key
+  url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api
+paths:
+  "/public/sites/v1/list":
+    get:
+      summary: Retrieves sites
+      tags:
+      - Sites
+      security:
+      - API_KEY: []
+      parameters:
+      - name: Content_Type
+        in: header
+        required: true
+        description: Must be equal to application/json
+        schema:
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Sites retrieved
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    data:
+                    - id: 1
+                      name: Oxford
+                      status: active
+                      external_id: ABC
+                      area_id: 3
+                    - id: 2
+                      name: Newcastle
+                      status: archived
+                      external_id:
+                      area_id:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/Site"
+        '401':
+          description: Unauthorized - Missing or Invalid API Key
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error401"
+        '429':
+          description: Too Many Requests - Rate Limit Exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error429"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error500"
+servers:
+- url: https://web.trailapp.com/api
+- url: https://us.trailapp.com/api
+  description: US
+components:
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      name: API_KEY
+      in: header
+  schemas:
+    Site:
+      type: object
+      description: An object representing a summary of a site - the model that represents
+        the locations in your organisation
+      properties:
+        id:
+          type: integer
+          example: 2785
+          description: Unique identifier for the site
+        name:
+          type: string
+          example: Edinburgh
+          description: Name of the site
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - demo
+          - archived
+          - setup
+          example: inactive
+          description: |
+            A string representing the current status of the site.
+
+            Possible values:
+            - active (The site has been set as currently in use)
+            - inactive (The site has been set as not currently in use, and will not receive scores)
+            - demo (The site is a demo site)
+            - archived (The site has been archived and will not receive scores)
+            - setup (The site has not yet reached its live date)
+        external_id:
+          type: string
+          nullable: true
+          example: LV-426
+          description: The external ID provided by the user on the Site Edit page
+            in the app
+        area_id:
+          type: integer
+          nullable: true
+          example: 75839
+          description: The ID of the area the site is contained in, if any
+      required:
+      - id
+      - name
+      - status
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors

@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: https://answers.trailapp.com/ (help centre), https://hospitality-theaccessgroup.statushub.io/, openapi/
+description: >-
+  Lifecycle posture for the Trail APIs, gathered from the Trail help centre,
+  the Access Hospitality status page, and the published OpenAPI documents.
+status_page:
+  url: https://hospitality-theaccessgroup.statushub.io/
+  provider: StatusHub
+  scope: Access Hospitality products (includes Trail)
+  http_status: 200
+versioning:
+  scheme: path
+  current: v1
+  evidence: >-
+    All public routes are path-versioned (/public/<resource>/v1/...); each
+    OpenAPI document declares info.version v1.
+release_notes:
+  url: https://answers.trailapp.com/en/collections/19359271-release-notes
+  articles:
+    - https://answers.trailapp.com/en/articles/14470503-trail-releases
+    - https://answers.trailapp.com/en/articles/14470671-recent-releases
+deprecation_policy:
+  published: false
+  evidence: >-
+    No public deprecation or sunset policy found on trailapp.com or the help
+    centre; no deprecated operations declared in the OpenAPI documents.
+sunset_headers:
+  documented: false
+sla:
+  published: false
+deprecated_operations: []
+notes:
+  - The Task Reports API data is refreshed twice daily (documented in the Task Reports OpenAPI description).
+  - Historical Terms & Conditions are archived at https://answers.trailapp.com/en/articles/3772084-historical-terms-conditions.

@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: probed
+description: >-
+  Results of probing the /.well-known/ discovery surface for Trail
+  (trailapp.com, an Access Group hospitality product). No API base host is
+  published; the marketing site (trailapp.com) and the web app
+  (web.trailapp.com) were probed, and the conventional developer subdomains
+  (api./developers./developer./docs.trailapp.com) do not resolve. Status is
+  the HTTP code observed at fetch time; no document returned a real payload,
+  so nothing was saved verbatim. Absence recorded as valid data.
+hosts:
+  - host: https://trailapp.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+  - host: https://web.trailapp.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://answers.trailapp.com
+    documents:
+      - path: /llms.txt
+        status: 200
+        type: text/plain
+        note: Real llms.txt served by the Intercom help centre; saved verbatim to llms/trail-llms.txt.
+  - host: https://api.trailapp.com
+    note: Host does not resolve (connection failed, curl status 000).
+  - host: https://developers.trailapp.com
+    note: Host does not resolve (connection failed, curl status 000).
+  - host: https://developer.trailapp.com
+    note: Host does not resolve (connection failed, curl status 000).
+  - host: https://docs.trailapp.com
+    note: Host does not resolve (connection failed, curl status 000).

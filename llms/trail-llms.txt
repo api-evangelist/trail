@@ -1,0 +1,74 @@
+# Trail Help Centre
+
+> Help center for The Access Group
+
+## Get started with Trail
+
+- [The Set Up Guide](https://answers.trailapp.com/en/articles/5166530-the-set-up-guide.md): Access to relevant, pre-built tasks when you sign up
+- [Getting my teams started in Trail](https://answers.trailapp.com/en/articles/4578789-getting-my-teams-started-in-trail.md): A smooth-sailing guide to inviting, training and supporting your teams.
+- [Starter guide for Managers](https://answers.trailapp.com/en/articles/674613-starter-guide-for-managers.md): Everything you need to know to use Trail in your site
+- [Starter guide for Admins](https://answers.trailapp.com/en/articles/1369311-starter-guide-for-admins.md): Trail explained, from managing tasks to receiving reports
+- [Starter guide for Teams](https://answers.trailapp.com/en/articles/1004951-starter-guide-for-teams.md): A quick video introduction to using Trail at sites
+- [Technical requirements - devices, browsers and domains](https://answers.trailapp.com/en/articles/1081767-technical-requirements-devices-browsers-and-domains.md): An overview of the hardware and software requirements for running the Trail app
+- [Bulk upload sites](https://answers.trailapp.com/en/articles/11080642-bulk-upload-sites.md): Use our CSV site uploader to upload your sites in bulk
+- [Use the Access Digital Assistant](https://answers.trailapp.com/en/articles/13915412-use-the-access-digital-assistant.md): Find out more about utilising the Access Digital Assistant.
+- [Get started with Trail Evo e-learning](https://answers.trailapp.com/en/articles/14962709-get-started-with-trail-evo-e-learning.md): Find interactive resources and learn to navigate and use Access Trail.
+
+## Trail EVO
+
+- [Introducing Trail EVO](https://answers.trailapp.com/en/articles/12310270-introducing-trail-evo.md): EVO is a powerful new addition to Trail, designed to simplify how your teams access policies, get answers, and stay informed.
+- [What is Policies & Procedures?](https://answers.trailapp.com/en/articles/12310642-what-is-policies-procedures.md): A quick overview of the Policies & Procedures feature in Trail Evo and how it supports your team.
+- [Navigating Policies & Procedures](https://answers.trailapp.com/en/articles/12312049-navigating-policies-procedures.md): A quick guide to the layout and key sections of the Policies & Procedures feature in Trail EVO.
+- [Managing Documents in Trail EVO](https://answers.trailapp.com/en/articles/12312138-managing-documents-in-trail-evo.md): Learn how to create, upload, organise, and assign key documentation using the Policies & Procedures module.
+- [Getting Started with Copilot](https://answers.trailapp.com/en/articles/12322867-getting-started-with-copilot.md): Learn how to enable Copilot in Trail EVO so your team can access instant, AI-powered answers from your internal documents while they work.
+- [Trail EVO Notifications and Push Alerts via the Access EVO App](https://answers.trailapp.com/en/articles/12383682-trail-evo-notifications-and-push-alerts-via-the-access-evo-app.md): Stay informed and responsive, wherever your team is.
+- [Link your Trail account to Access](https://answers.trailapp.com/en/articles/12460720-link-your-trail-account-to-access.md): Link your user account to Access Evo to unlock the Evo button and all the enhanced features that come with it
+- [Managing access to EVO modules & features](https://answers.trailapp.com/en/articles/10920387-managing-access-to-evo-modules-features.md)
+- [Enable 2FA for Trail EVO](https://answers.trailapp.com/en/articles/12608634-enable-2fa-for-trail-evo.md): Keep your account secure with an extra layer of protection
+- [Managing your users in Trail EVO](https://answers.trailapp.com/en/articles/12689360-managing-your-users-in-trail-evo.md): Invite, organise, and control your team's access to everything in EVO from one central hub.
+- [Migrating your users to Evo](https://answers.trailapp.com/en/articles/15263032-migrating-your-users-to-evo.md): Control when your team connects to Access Evo. Set a deadline or require it immediately - all from your company settings.
+- [Trail Evo for Teams](https://answers.trailapp.com/en/articles/15326435-trail-evo-for-teams.md): Evo helps you get quick answers, follow the right steps, and stay up to date with what matters in your day-to-day work.
+
+## REVIEW - Report & notify
+
+- [Get reports delivered to your inbox](https://answers.trailapp.com/en/articles/2318707-get-reports-delivered-to-your-inbox.md): Add or remove users from notifications, reports, alerts and daily digest
+- [Trail's Task Reports API](https://answers.trailapp.com/en/articles/9166997-trail-s-task-reports-api.md): Our Task Reports dashboard has been designed to suit a variety of customer needs. Want something more bespoke? Take a look at our API.
+- [Review & approve completed tasks](https://answers.trailapp.com/en/articles/10706453-review-approve-completed-tasks.md): Require approval after tasks have been completed
+- [Notify teams when an automated task is added to Trail](https://answers.trailapp.com/en/articles/12010436-notify-teams-when-an-automated-task-is-added-to-trail.md): Ensure teams know an automated task has been added to Trail
+
+## Manage sites, users & settings
+
+- [Understanding Your Login Options](https://answers.trailapp.com/en/articles/10920394-understanding-your-login-options.md): Explore the two login options in Trail and learn which one unlocks the best experience for you.
+
+## Integrations
+
+- [Introduction to Zapier](https://answers.trailapp.com/en/articles/9116873-introduction-to-zapier.md): Use the Trail API to integrate with Zapier, allowing you to connect with thousands of different apps.
+- [Connect with other Apps using Zapier](https://answers.trailapp.com/en/articles/5253012-connect-with-other-apps-using-zapier.md): Use the Trail API to integrate with Zapier, allowing you to connect with thousands of different apps
+- [Trigger Zapier when a task is completed](https://answers.trailapp.com/en/articles/5264921-trigger-zapier-when-a-task-is-completed.md): Integrate with 1000s of apps and trigger actions whenever a site completes a task
+- [Add an Automated task with Zapier](https://answers.trailapp.com/en/articles/5264932-add-an-automated-task-with-zapier.md): Integrate with 1000s of apps to add Automated tasks for sites to complete
+- [Automatically create tasks from HR tools](https://answers.trailapp.com/en/articles/2586701-automatically-create-tasks-from-hr-tools.md): How to create an induction plan from a digital signing app
+- [Maintenance Log \<\> Trail Integration](https://answers.trailapp.com/en/articles/5585852-maintenance-log-trail-integration.md): Complete a maintenance task, notify suppliers and follow up
+- [Feed It Back \<\> Trail Integration](https://answers.trailapp.com/en/articles/5467563-feed-it-back-trail-integration.md): Send follow-up actions from Feed It Back surveys to sites to complete
+- [iAuditor \<\> Trail integration](https://answers.trailapp.com/en/articles/1476145-iauditor-trail-integration.md): An effortless way to ensure all follow up actions are completed
+- [Infogrid \<\> Trail Integration](https://answers.trailapp.com/en/articles/5370746-infogrid-trail-integration.md): Send Infogrid equipment temperatures to Trail via Zapier
+- [Automatically create tasks with our API](https://answers.trailapp.com/en/articles/11402060-automatically-create-tasks-with-our-api.md): Use the Trail tasks instances API to connect your tools and automatically trigger tasks in Trail
+- [Place Access Maintain callouts straight from Trail](https://answers.trailapp.com/en/articles/15555190-place-access-maintain-callouts-straight-from-trail.md): Customers of both Access Maintain and Trail can now place maintenance callouts directly from Trail.
+
+## FAQs & troubleshooting
+
+- [How does the free trial work?](https://answers.trailapp.com/en/articles/4810944-how-does-the-free-trial-work.md): Start a 14 day free trial today to explore all of Trail's features
+
+## Billing, terms & support
+
+- [Managing your subscription](https://answers.trailapp.com/en/articles/6701142-managing-your-subscription.md): Find out how to manage subscriptions here
+- [View and manage your invoices](https://answers.trailapp.com/en/articles/6701192-view-and-manage-your-invoices.md): Find out how you can access and update your Invoice details
+- [How to navigate the Billing Panel and activate your account](https://answers.trailapp.com/en/articles/6701266-how-to-navigate-the-billing-panel-and-activate-your-account.md): Find out how to manage your billing information and activate your account.
+- [Plans & Features](https://answers.trailapp.com/en/articles/4791005-plans-features.md): A detailed look into which plans have which features, with Trail
+- [Terms & Conditions Update - Key Changes](https://answers.trailapp.com/en/articles/5799778-terms-conditions-update-key-changes.md): Key changes made to our T&C's as of the 1st July 2025.
+- [Trail \(Part of the Access Group\): Terms & Conditions](https://answers.trailapp.com/en/articles/5797043-trail-part-of-the-access-group-terms-conditions.md): Our standard Terms & Conditions - effective as of 1st July 2025
+- [Historical Terms & Conditions](https://answers.trailapp.com/en/articles/3772084-historical-terms-conditions.md): All historical and retired T&C's published by Trail
+
+## Release notes
+
+- [Trail Releases](https://answers.trailapp.com/en/articles/14470503-trail-releases.md): Stay up-to-date with our latest releases
+- [Recent releases](https://answers.trailapp.com/en/articles/14470671-recent-releases.md): Catch up on Trail's recent releases...

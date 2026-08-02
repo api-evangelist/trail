@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trail_evo_api_v1.yaml
+schemes:
+- name: oauth2
+  source: openapi/trail_evo_api_v1.yaml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://preprodidentity.accessacloud.com/connect/authorize
+    tokenUrl: /api/evo_api/oauth/token
+scopes:
+- scope: access.trail.api
+  description: Trail API
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trail_evo_api_v1.yaml
+- scope: email
+  description: Email
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trail_evo_api_v1.yaml
+- scope: openid
+  description: OpenID
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trail_evo_api_v1.yaml
+- scope: profile
+  description: Profile
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trail_evo_api_v1.yaml

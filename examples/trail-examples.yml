@@ -1,0 +1,66 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ (response examples embedded in the published specs)
+description: Index of request/response examples published inside the Trail OpenAPI documents. Each entry points
+  at the spec file and operation that carries the example verbatim; nothing is fabricated.
+examples:
+- api: trail_areas_v1.yaml
+  operation: GET /public/areas/v1/list
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_areas_v1.yaml
+- api: trail_scores_v1.yaml
+  operation: POST /public/scores/v1/scores
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_scores_v1.yaml
+- api: trail_sites_v1.yaml
+  operation: GET /public/sites/v1/list
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_sites_v1.yaml
+- api: trail_tags_v1.yaml
+  operation: GET /public/tags/v1/list
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_tags_v1.yaml
+- api: trail_task_instances_v1.yaml
+  operation: POST /public/task_instances/v1/task_instances
+  status: '201'
+  media_type: application/json
+  source: openapi/trail_task_instances_v1.yaml
+- api: trail_task_instances_v1.yaml
+  operation: GET /public/task_instances/v1/task_instances/{id}
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_task_instances_v1.yaml
+- api: trail_task_instances_v1.yaml
+  operation: GET /public/task_instances/v1/task_instances/{id}
+  status: '401'
+  media_type: application/json
+  source: openapi/trail_task_instances_v1.yaml
+- api: trail_task_reports_v1.yaml
+  operation: POST /public/task_reports/v1/comments
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_task_reports_v1.yaml
+- api: trail_task_reports_v1.yaml
+  operation: POST /public/task_reports/v1/checklists
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_task_reports_v1.yaml
+- api: trail_task_reports_v1.yaml
+  operation: POST /public/task_reports/v1/task_instances
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_task_reports_v1.yaml
+- api: trail_task_reports_v1.yaml
+  operation: POST /public/task_reports/v1/record_logs
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_task_reports_v1.yaml
+- api: trail_task_templates_v1.yaml
+  operation: GET /public/task_templates/v1/list
+  status: '200'
+  media_type: application/json
+  source: openapi/trail_task_templates_v1.yaml

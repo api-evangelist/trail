@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: Task Reports Overlay
+  version: 1.0.0
+extends: ../openapi/trail_task_reports_v1.yaml
+x-generated: '2026-07-21'
+x-method: generated
+x-source: API Evangelist enrichment pipeline — enhancements over openapi/trail_task_reports_v1.yaml
+actions:
+- target: $.info
+  update:
+    contact:
+      name: Trail Support
+      url: https://answers.trailapp.com/
+    x-apisjson-provider: trail
+- target: $.paths["/public/task_reports/v1/comments"].post
+  update:
+    operationId: postTaskReportsComments
+- target: $.paths["/public/task_reports/v1/checklists"].post
+  update:
+    operationId: postTaskReportsChecklists
+- target: $.paths["/public/task_reports/v1/task_instances"].post
+  update:
+    operationId: postTaskReportsTaskInstances
+- target: $.paths["/public/task_reports/v1/record_logs"].post
+  update:
+    operationId: postTaskReportsRecordLogs
