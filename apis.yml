@@ -163,6 +163,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/trail-areas-overlay.yaml
 - type: DomainSecurity
   url: security/trail-domain-security.yml
 - type: OAuthScopes
