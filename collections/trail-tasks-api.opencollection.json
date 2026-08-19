@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Areas Tasks API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://web.trailapp.com/api/evo_api/tasks",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Location ID"
+              },
+              {
+                "name": "task_template_id",
+                "value": "",
+                "type": "query",
+                "description": "Task template ID"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Retrieves tasks"
+        },
+        {
+          "info": {
+            "name": "Creates a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://web.trailapp.com/api/evo_api/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

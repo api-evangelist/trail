@@ -1,0 +1,401 @@
+{
+  "item": [
+    {
+      "id": "d5c04f0e-6108-4caf-bd19-42a2c8606d49",
+      "name": "Sites",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37a6dab2-8bdd-4e44-a222-a1a9afa56096",
+          "name": "Retrieves user sites",
+          "request": {
+            "name": "Retrieves user sites",
+            "description": {},
+            "url": {
+              "path": [
+                "evo_api",
+                "sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "935f84a3-cc49-4f92-9351-8fbbb336ee2a",
+              "name": "sites retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evo_api",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Oxford\",\n    \"area_name\": \"England\",\n    \"address\": \"123 Main Street\",\n    \"city\": \"Oxford\",\n    \"state\": \"Oxfordshire\",\n    \"zipcode\": \"OX1 1AA\",\n    \"country\": \"United Kingdom\",\n    \"latitude\": 51.752,\n    \"longitude\": -1.2577,\n    \"status\": \"active\",\n    \"timezone\": \"Europe/London\"\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Oxford\",\n    \"area_name\": \"England\",\n    \"address\": \"123 Main Street\",\n    \"city\": \"Oxford\",\n    \"state\": \"Oxfordshire\",\n    \"zipcode\": \"OX1 1AA\",\n    \"country\": \"United Kingdom\",\n    \"latitude\": 51.752,\n    \"longitude\": -1.2577,\n    \"status\": \"active\",\n    \"timezone\": \"Europe/London\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e212bde1-377f-4ad8-9fc9-4fe35f7bc23f",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evo_api",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e35e5712-179e-4859-be96-1b34dda0eced",
+          "name": "Retrieves sites",
+          "request": {
+            "name": "Retrieves sites",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "sites",
+                "v1",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Must be equal to application/json",
+                "key": "Content_Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "92efeb0f-6496-45fc-a4ec-de574a4fdeaf",
+              "name": "Sites retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "sites",
+                    "v1",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"Oxford\",\n      \"status\": \"active\",\n      \"external_id\": \"ABC\",\n      \"area_id\": 3\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Newcastle\",\n      \"status\": \"archived\",\n      \"external_id\": null,\n      \"area_id\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56476805-fa48-41f6-9d65-639a4a4fecee",
+              "name": "Unauthorized - Missing or Invalid API Key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "sites",
+                    "v1",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f9bcfb2-87a8-492d-b207-f44b0716e9c9",
+              "name": "Too Many Requests - Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "sites",
+                    "v1",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    },\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96dfab40-8ba3-41a4-aaf6-340182fd126f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "sites",
+                    "v1",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    },\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://web.trailapp.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1115ace4-78b9-49fd-ac3b-5f4ba05c096a",
+    "name": "Areas Sites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use this API to query details of your areas.\n[Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).\n\nAn API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.\n",
+      "type": "text/plain"
+    }
+  }
+}

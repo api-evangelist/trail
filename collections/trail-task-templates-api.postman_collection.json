@@ -1,0 +1,401 @@
+{
+  "item": [
+    {
+      "id": "f569052b-043a-4796-a41a-8fcf16368832",
+      "name": "Task Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fbd72ecd-7214-4343-81a5-1f81323bfa66",
+          "name": "Retrieves task templates",
+          "request": {
+            "name": "Retrieves task templates",
+            "description": {},
+            "url": {
+              "path": [
+                "evo_api",
+                "task_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d663fde4-565b-4108-970f-376973d19b26",
+              "name": "task templates retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evo_api",
+                    "task_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Daily Cleaning\",\n    \"template_type\": \"single\",\n    \"status\": \"published\",\n    \"notes\": \"Clean the main areas\",\n    \"priority\": \"medium\",\n    \"location_ids\": [\n      1,\n      2,\n      3\n    ],\n    \"subtasks\": [\n      {\n        \"id\": 1,\n        \"name\": \"Clean floors\",\n        \"completion_value\": \"unchecked\",\n        \"position\": 0\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Clean floors\",\n        \"completion_value\": \"unchecked\",\n        \"position\": 0\n      }\n    ]\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Daily Cleaning\",\n    \"template_type\": \"single\",\n    \"status\": \"published\",\n    \"notes\": \"Clean the main areas\",\n    \"priority\": \"medium\",\n    \"location_ids\": [\n      1,\n      2,\n      3\n    ],\n    \"subtasks\": [\n      {\n        \"id\": 1,\n        \"name\": \"Clean floors\",\n        \"completion_value\": \"unchecked\",\n        \"position\": 0\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Clean floors\",\n        \"completion_value\": \"unchecked\",\n        \"position\": 0\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1652e93a-5586-432c-a362-eed017d1fd84",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evo_api",
+                    "task_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8981b47-0206-4873-a4e1-0735d9f2bf2e",
+          "name": "Retrieves task templates",
+          "request": {
+            "name": "Retrieves task templates",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "task_templates",
+                "v1",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Must be equal to application/json",
+                "key": "Content_Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3f25fdc8-1312-469c-b05c-2bfe29729196",
+              "name": "Task templates retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_templates",
+                    "v1",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"Recurring task\",\n      \"status\": \"published\",\n      \"type\": \"repeat\"\n    },\n    {\n      \"id\": 2,\n      \"name\": \"One off task\",\n      \"status\": \"published\",\n      \"type\": \"oneOff\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"On demand task\",\n      \"status\": \"published\",\n      \"type\": \"adHoc\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Automated task\",\n      \"status\": \"draft\",\n      \"type\": \"automated\"\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Action Template\",\n      \"status\": \"archived\",\n      \"type\": \"actionTemplate\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d3b236f-32f4-4a22-b5e2-d03acb540238",
+              "name": "Unauthorized - Missing or Invalid API Key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_templates",
+                    "v1",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "001d7bfa-5857-4d83-8c6a-1f1967f339a0",
+              "name": "Too Many Requests - Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_templates",
+                    "v1",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    },\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8b21aaf-e4b8-4a6c-a407-e28762482939",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_templates",
+                    "v1",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    },\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://web.trailapp.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0e432b63-9587-4cfa-9ac5-f481816b6925",
+    "name": "Areas Task Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use this API to query details of your areas.\n[Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).\n\nAn API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.\n",
+      "type": "text/plain"
+    }
+  }
+}

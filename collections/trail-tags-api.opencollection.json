@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Areas Tags API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://web.trailapp.com/api/public/tags/v1/list",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves tags"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

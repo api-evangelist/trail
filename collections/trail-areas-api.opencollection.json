@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Areas API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Areas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves areas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://web.trailapp.com/api/public/areas/v1/list",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves areas"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,75 +2,79 @@ generated: '2026-07-21'
 method: derived
 source: openapi/ (all 8 specs)
 status: candidate
-description: >-
-  Trail publishes no official MCP server (none found on the docs, help centre,
-  GitHub org trailsuite, or the MCP registry). This is a candidate tool list
-  derived from the operations in the published OpenAPI documents, for a future
-  MCP server over the Trail public APIs and Evo API.
+description: Trail publishes no official MCP server (none found on the docs, help centre, GitHub org trailsuite,
+  or the MCP registry). This is a candidate tool list derived from the operations in the published OpenAPI
+  documents, for a future MCP server over the Trail public APIs and Evo API.
 server:
   name: trail
   transport: candidate
   authentication:
-    - API_KEY header (public APIs)
-    - OAuth2 authorization code via Access Identity (Evo API)
+  - API_KEY header (public APIs)
+  - OAuth2 authorization code via Access Identity (Evo API)
 tools:
-  - name: list_areas
-    description: Retrieve areas configured for the account.
-    operation: GET /public/areas/v1/list
-    source: openapi/trail_areas_v1.yaml
-  - name: list_sites
-    description: Retrieve sites configured for the account.
-    operation: GET /public/sites/v1/list
-    source: openapi/trail_sites_v1.yaml
-  - name: list_tags
-    description: Retrieve tags used to group tasks.
-    operation: GET /public/tags/v1/list
-    source: openapi/trail_tags_v1.yaml
-  - name: list_task_templates
-    description: Retrieve task templates for the account.
-    operation: GET /public/task_templates/v1/list
-    source: openapi/trail_task_templates_v1.yaml
-  - name: create_task_instance
-    description: Create a task instance to trigger a task in Trail.
-    operation: POST /public/task_instances/v1/task_instances
-    source: openapi/trail_task_instances_v1.yaml
-  - name: get_task_instance
-    description: Retrieve a single task instance by ID.
-    operation: GET /public/task_instances/v1/task_instances/{id}
-    source: openapi/trail_task_instances_v1.yaml
-  - name: report_task_instances
-    description: Query completed/late/missed task instances for reporting.
-    operation: POST /public/task_reports/v1/task_instances
-    source: openapi/trail_task_reports_v1.yaml
-  - name: report_checklists
-    description: Query checklist items for one or more task instances.
-    operation: POST /public/task_reports/v1/checklists
-    source: openapi/trail_task_reports_v1.yaml
-  - name: report_record_logs
-    description: Query record logs (with scores and range errors) for task instances.
-    operation: POST /public/task_reports/v1/record_logs
-    source: openapi/trail_task_reports_v1.yaml
-  - name: report_comments
-    description: Query comments (with attachments) on task instances.
-    operation: POST /public/task_reports/v1/comments
-    source: openapi/trail_task_reports_v1.yaml
-  - name: get_scores
-    description: Retrieve compliance scores for sites and areas.
-    operation: POST /public/scores/v1/scores
-    source: openapi/trail_scores_v1.yaml
-  - name: evo_get_sites
-    description: Retrieve user sites (Evo API, operationId getSites).
-    operation: GET /evo_api/sites
-    source: openapi/trail_evo_api_v1.yaml
-  - name: evo_get_task_templates
-    description: Retrieve task templates (Evo API, operationId getTaskTemplates).
-    operation: GET /evo_api/task_templates
-    source: openapi/trail_evo_api_v1.yaml
-  - name: evo_get_tasks
-    description: Retrieve tasks filtered by location, template and date (Evo API, operationId getTasks).
-    operation: GET /evo_api/tasks
-    source: openapi/trail_evo_api_v1.yaml
-  - name: evo_create_task
-    description: Create a task (Evo API, operationId createTask).
-    operation: POST /evo_api/tasks
-    source: openapi/trail_evo_api_v1.yaml
+- name: list_areas
+  description: Retrieve areas configured for the account.
+  operation: GET /public/areas/v1/list
+  source: openapi/trail_areas_v1.yaml
+- name: list_sites
+  description: Retrieve sites configured for the account.
+  operation: GET /public/sites/v1/list
+  source: openapi/trail_sites_v1.yaml
+- name: list_tags
+  description: Retrieve tags used to group tasks.
+  operation: GET /public/tags/v1/list
+  source: openapi/trail_tags_v1.yaml
+- name: list_task_templates
+  description: Retrieve task templates for the account.
+  operation: GET /public/task_templates/v1/list
+  source: openapi/trail_task_templates_v1.yaml
+- name: create_task_instance
+  description: Create a task instance to trigger a task in Trail.
+  operation: POST /public/task_instances/v1/task_instances
+  source: openapi/trail_task_instances_v1.yaml
+- name: get_task_instance
+  description: Retrieve a single task instance by ID.
+  operation: GET /public/task_instances/v1/task_instances/{id}
+  source: openapi/trail_task_instances_v1.yaml
+- name: report_task_instances
+  description: Query completed/late/missed task instances for reporting.
+  operation: POST /public/task_reports/v1/task_instances
+  source: openapi/trail_task_reports_v1.yaml
+- name: report_checklists
+  description: Query checklist items for one or more task instances.
+  operation: POST /public/task_reports/v1/checklists
+  source: openapi/trail_task_reports_v1.yaml
+- name: report_record_logs
+  description: Query record logs (with scores and range errors) for task instances.
+  operation: POST /public/task_reports/v1/record_logs
+  source: openapi/trail_task_reports_v1.yaml
+- name: report_comments
+  description: Query comments (with attachments) on task instances.
+  operation: POST /public/task_reports/v1/comments
+  source: openapi/trail_task_reports_v1.yaml
+- name: get_scores
+  description: Retrieve compliance scores for sites and areas.
+  operation: POST /public/scores/v1/scores
+  source: openapi/trail_scores_v1.yaml
+- name: evo_get_sites
+  description: Retrieve user sites (Evo API, operationId getSites).
+  operation: GET /evo_api/sites
+  source: openapi/trail_evo_api_v1.yaml
+- name: evo_get_task_templates
+  description: Retrieve task templates (Evo API, operationId getTaskTemplates).
+  operation: GET /evo_api/task_templates
+  source: openapi/trail_evo_api_v1.yaml
+- name: evo_get_tasks
+  description: Retrieve tasks filtered by location, template and date (Evo API, operationId getTasks).
+  operation: GET /evo_api/tasks
+  source: openapi/trail_evo_api_v1.yaml
+- name: evo_create_task
+  description: Create a task (Evo API, operationId createTask).
+  operation: POST /evo_api/tasks
+  source: openapi/trail_evo_api_v1.yaml
+deployment:
+  mode: none
+  verified: derived
+  tools: 15
+  checked: '2026-08-12'
+  source: catalog MCP census

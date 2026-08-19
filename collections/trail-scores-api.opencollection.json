@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Areas Scores API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://web.trailapp.com/api/public/scores/v1/scores",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Scores"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

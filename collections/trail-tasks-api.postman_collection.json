@@ -1,0 +1,314 @@
+{
+  "item": [
+    {
+      "id": "4264ea39-0668-4c01-a952-7dad1dca90d0",
+      "name": "Tasks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e797b8b-c8ef-4c97-9813-df90c1a292f9",
+          "name": "Retrieves tasks",
+          "request": {
+            "name": "Retrieves tasks",
+            "description": {},
+            "url": {
+              "path": [
+                "evo_api",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>",
+                  "description": "(Required) Location ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "task_template_id",
+                  "value": "<integer>",
+                  "description": "(Required) Task template ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "(Required) Date (YYYY-MM-DD)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "9ef95424-858a-41b2-ad58-f667bf2b42a9",
+              "name": "tasks retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evo_api",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "task_template_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Daily Cleaning\",\n    \"status\": \"completed\",\n    \"notes\": \"Clean the main areas\",\n    \"due_from_datetime\": \"2024-01-01T09:00:00Z\",\n    \"due_by_datetime\": \"2024-01-01T10:00:00Z\",\n    \"completed_at\": \"2024-01-01T09:30:00Z\",\n    \"completed_by\": \"John Doe\",\n    \"subtasks\": [\n      {\n        \"id\": 1,\n        \"name\": \"Clean floors\",\n        \"completion_value\": \"unchecked\",\n        \"position\": 0\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Clean floors\",\n        \"completion_value\": \"unchecked\",\n        \"position\": 0\n      }\n    ]\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Daily Cleaning\",\n    \"status\": \"completed\",\n    \"notes\": \"Clean the main areas\",\n    \"due_from_datetime\": \"2024-01-01T09:00:00Z\",\n    \"due_by_datetime\": \"2024-01-01T10:00:00Z\",\n    \"completed_at\": \"2024-01-01T09:30:00Z\",\n    \"completed_by\": \"John Doe\",\n    \"subtasks\": [\n      {\n        \"id\": 1,\n        \"name\": \"Clean floors\",\n        \"completion_value\": \"unchecked\",\n        \"position\": 0\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Clean floors\",\n        \"completion_value\": \"unchecked\",\n        \"position\": 0\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc8a8bf8-be75-41c1-b2ab-8a6e12aff6b7",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evo_api",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "task_template_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "783e85e0-eabc-414a-bf9a-297737726f47",
+          "name": "Creates a task",
+          "request": {
+            "name": "Creates a task",
+            "description": {},
+            "url": {
+              "path": [
+                "evo_api",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"start_datetime\": \"<dateTime>\",\n  \"end_datetime\": \"<dateTime>\",\n  \"location_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"checklist_items\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "622465c0-4ace-475a-9008-92888f87c187",
+              "name": "task created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evo_api",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"One-off Cleaning\",\n  \"start_datetime\": \"2024-01-01T09:00:00Z\",\n  \"end_datetime\": \"2024-01-01T10:00:00Z\",\n  \"location_id\": 1,\n  \"description\": \"Clean the main areas\",\n  \"checklist_items\": [\n    \"Clean floors\",\n    \"Dust surfaces\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Daily Cleaning\",\n  \"status\": \"completed\",\n  \"notes\": \"Clean the main areas\",\n  \"due_from_datetime\": \"2024-01-01T09:00:00Z\",\n  \"due_by_datetime\": \"2024-01-01T10:00:00Z\",\n  \"completed_at\": \"2024-01-01T09:30:00Z\",\n  \"completed_by\": \"John Doe\",\n  \"subtasks\": [\n    {\n      \"id\": 1,\n      \"name\": \"Clean floors\",\n      \"completion_value\": \"unchecked\",\n      \"position\": 0\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Clean floors\",\n      \"completion_value\": \"unchecked\",\n      \"position\": 0\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b41239a7-a8fd-4dd7-b365-ec8605bec60e",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evo_api",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"One-off Cleaning\",\n  \"start_datetime\": \"2024-01-01T09:00:00Z\",\n  \"end_datetime\": \"2024-01-01T10:00:00Z\",\n  \"location_id\": 1,\n  \"description\": \"Clean the main areas\",\n  \"checklist_items\": [\n    \"Clean floors\",\n    \"Dust surfaces\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://web.trailapp.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ede0c835-ab19-4141-8f2f-4735be7caedd",
+    "name": "Areas Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use this API to query details of your areas.\n[Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).\n\nAn API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.\n",
+      "type": "text/plain"
+    }
+  }
+}

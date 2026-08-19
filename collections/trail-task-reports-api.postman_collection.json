@@ -1,0 +1,1512 @@
+{
+  "item": [
+    {
+      "id": "124499dd-9833-4f20-a25c-817e71bb535b",
+      "name": "Task Reports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4d0a7146-3c76-47d1-893f-07abadd5f350",
+          "name": "Comments",
+          "request": {
+            "name": "Comments",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "task_reports",
+                "v1",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Must be equal to application/json",
+                "key": "Content_Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e598211-62f7-4ba6-8048-4619c15f4c23",
+              "name": "Comments retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"3\": {\n      \"task\": [\n        {\n          \"content\": \"Task comment\",\n          \"attachmentUrls\": [\n            \"http://www.example.com/trail/1#/file/abc123\"\n          ],\n          \"commentedDatetime\": \"2025-02-28T23:59:00.000Z\",\n          \"commentedByUserName\": \"Sam\",\n          \"commentedByUserId\": 1\n        },\n        {\n          \"content\": \"Another task comment\",\n          \"attachmentUrls\": [],\n          \"commentedDatetime\": \"2025-03-01T00:00:00.000Z\",\n          \"commentedByUserName\": \"Sam\",\n          \"commentedByUserId\": 1\n        }\n      ],\n      \"checklist\": [\n        {\n          \"checkId\": 1,\n          \"content\": \"Checklist comment\",\n          \"attachmentUrls\": [\n            \"http://www.example.com/trail/1#/file/def345\"\n          ],\n          \"commentedDatetime\": \"2025-02-28T22:30:00.000Z\",\n          \"commentedByUserName\": \"Sam\",\n          \"commentedByUserId\": 1\n        },\n        {\n          \"checkId\": 1,\n          \"content\": \"Another checklist comment\",\n          \"attachmentUrls\": [],\n          \"commentedDatetime\": \"2025-02-28T23:00:00.000Z\",\n          \"commentedByUserName\": \"Sam\",\n          \"commentedByUserId\": 1\n        }\n      ],\n      \"recordLog\": [\n        {\n          \"recordLogRowIndex\": 0,\n          \"recordLogFieldId\": \"options\",\n          \"content\": \"Record log comment\",\n          \"attachmentUrls\": [],\n          \"commentedDatetime\": \"2025-02-28T23:51:00.000Z\",\n          \"commentedByUserName\": \"Sam\",\n          \"commentedByUserId\": 1\n        },\n        {\n          \"recordLogRowIndex\": 0,\n          \"recordLogFieldId\": \"options\",\n          \"content\": \"Another record log comment\",\n          \"attachmentUrls\": [],\n          \"commentedDatetime\": \"2025-02-28T23:52:00.000Z\",\n          \"commentedByUserName\": \"Sam\",\n          \"commentedByUserId\": 1\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "661d2e06-4b62-4405-b727-d32e06eee9ac",
+              "name": "Unauthorized - Missing or Invalid API Key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "599275b1-97af-4013-9d4e-7f0533780dae",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    },\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52270023-8f51-460e-8354-9a645da5f575",
+              "name": "Too Many Requests - Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    },\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e64d270d-c698-4759-8e43-364b1abd9503",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    },\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b83d359-e43a-4ff4-bf02-6575caab7410",
+          "name": "Checklists",
+          "request": {
+            "name": "Checklists",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "task_reports",
+                "v1",
+                "checklists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Must be equal to application/json",
+                "key": "Content_Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba7928ce-f295-4e99-9550-76e458aa8844",
+              "name": "Checklists retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "checklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"3\": [\n      {\n        \"checkId\": 2,\n        \"checkName\": \"Check the freezer\",\n        \"status\": \"unchecked\",\n        \"completedDatetime\": \"2023-05-23T12:00:00Z\",\n        \"completedByUserName\": \"Sam\",\n        \"completedByUserId\": 1,\n        \"header\": \"Freezer tasks\"\n      },\n      {\n        \"checkId\": 1,\n        \"checkName\": \"Check the fridge\",\n        \"status\": \"unchecked\",\n        \"completedDatetime\": null,\n        \"completedByUserName\": null,\n        \"completedByUserId\": null,\n        \"header\": null\n      }\n    ],\n    \"6\": [\n      {\n        \"checkId\": 4,\n        \"checkName\": \"Check the freezer\",\n        \"status\": \"done\",\n        \"completedDatetime\": \"2025-03-01T00:00:00Z\",\n        \"completedByUserName\": \"Dave\",\n        \"completedByUserId\": 2,\n        \"header\": \"Freezer tasks\"\n      },\n      {\n        \"checkId\": 3,\n        \"checkName\": \"Check the fridge\",\n        \"status\": \"unchecked\",\n        \"completedDatetime\": null,\n        \"completedByUserName\": null,\n        \"completedByUserId\": null,\n        \"header\": null\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bd2e558-fbeb-483e-929b-1ee6f98dcd2b",
+              "name": "Unauthorized - Missing or Invalid API Key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "checklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd68c75e-c7b1-4e0c-9c62-637e779e2a23",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "checklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    },\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f2b097f-96a0-4e2e-9f34-534c7b36b63c",
+              "name": "Too Many Requests - Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "checklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    },\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f90190e5-d5a7-474a-a2c2-4f59154516d5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "checklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    },\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52f8a3d6-f9a0-44c8-8317-ed6d475fec76",
+          "name": "Task instances",
+          "request": {
+            "name": "Task instances",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "task_reports",
+                "v1",
+                "task_instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Must be equal to application/json",
+                "key": "Content_Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"taskTemplateIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"pageStart\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18ffb0b7-c660-4ebf-aaf4-0e7fdb3a7910",
+              "name": "Task instances retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"taskTemplateIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"pageStart\": \"MTIzNA==\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"taskInstanceId\": 3,\n      \"dueFromDatetime\": \"2025-03-01T12:00:00.000Z\",\n      \"dueByDatetime\": \"2025-03-01T16:00:00.000Z\",\n      \"completedDatetime\": \"2025-03-01T11:00:00.000Z\",\n      \"exceptionTypes\": [],\n      \"siteId\": 1,\n      \"taskTemplateId\": 3,\n      \"taskType\": \"action\",\n      \"priority\": \"high\",\n      \"actionTaskInstanceIds\": [\n        5\n      ],\n      \"addedChecklistCount\": 0,\n      \"areaId\": 3,\n      \"areaName\": \"London\",\n      \"businessDates\": [\n        \"2025-03-01\"\n      ],\n      \"completedByUserId\": 1,\n      \"completedByUserName\": \"Sam\",\n      \"exceptionCount\": 0,\n      \"flaggedChecklistCount\": 0,\n      \"linkedTaskInstanceId\": 4,\n      \"recordLogExceptionCount\": 0,\n      \"requiresPin\": true,\n      \"siteExternalId\": null,\n      \"siteName\": \"Angel\",\n      \"status\": \"completedEarly\",\n      \"tags\": [\n        {\n          \"tagId\": 1,\n          \"label\": \"Bar\"\n        }\n      ],\n      \"taskInstanceName\": \"Clean bartop\"\n    }\n  ],\n  \"page\": {\n    \"nextCursor\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a782013e-84d6-4c2e-a865-d7f955a709c8",
+              "name": "Unauthorized - Missing or Invalid API Key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"taskTemplateIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"pageStart\": \"MTIzNA==\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2186a4f6-aee7-4e13-8a7a-1af450cfe20d",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"taskTemplateIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"pageStart\": \"MTIzNA==\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    },\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8624aa43-b59e-409d-ae2d-376f3d11ca76",
+              "name": "Too Many Requests - Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"taskTemplateIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"pageStart\": \"MTIzNA==\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    },\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07119592-a50e-47ac-b5d5-ff04e2495196",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"taskTemplateIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"pageStart\": \"MTIzNA==\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    },\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d0bad64-2d13-4079-a13a-8e39eece5ac1",
+          "name": "Record logs",
+          "request": {
+            "name": "Record logs",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "task_reports",
+                "v1",
+                "record_logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Must be equal to application/json",
+                "key": "Content_Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "528e3e29-6ef5-4ef5-ad5c-890cc5459dbd",
+              "name": "Record logs retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "record_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"3\": [\n      {\n        \"recordLogId\": 1,\n        \"records\": [\n          {\n            \"Visitor Name\": {\n              \"id\": \"1744042652672\",\n              \"name\": \"Visitor Name\",\n              \"value\": \"Bob\",\n              \"type\": \"text\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"Visitor Type\": {\n              \"id\": \"1744042651941\",\n              \"name\": \"Visitor Type\",\n              \"value\": \"Corporate\",\n              \"type\": \"options\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"Time of arrival\": {\n              \"id\": \"17440426509431\",\n              \"name\": \"Time of arrival\",\n              \"value\": \"13:30\",\n              \"type\": \"dateTime\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"hasError\": false\n          },\n          {\n            \"Visitor Name\": {\n              \"id\": \"1744042652672\",\n              \"name\": \"Visitor Name\",\n              \"value\": \"Sarah\",\n              \"type\": \"text\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"Visitor Type\": {\n              \"id\": \"1744042651941\",\n              \"name\": \"Visitor Type\",\n              \"value\": \"Customer\",\n              \"type\": \"options\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"Time of arrival\": {\n              \"id\": \"17440426509431\",\n              \"name\": \"Time of arrival\",\n              \"value\": \"11:00\",\n              \"type\": \"dateTime\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"hasError\": false\n          },\n          {\n            \"Visitor Name\": {\n              \"id\": \"1744042652672\",\n              \"name\": \"Visitor Name\",\n              \"value\": \"Sam\",\n              \"type\": \"text\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"Visitor Type\": {\n              \"id\": \"1744042651941\",\n              \"name\": \"Visitor Type\",\n              \"value\": null,\n              \"type\": \"options\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"Time of arrival\": {\n              \"id\": \"17440426509431\",\n              \"name\": \"Time of arrival\",\n              \"value\": null,\n              \"type\": \"dateTime\",\n              \"hasError\": false,\n              \"errors\": []\n            },\n            \"hasError\": false\n          }\n        ],\n        \"hasError\": false\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78eea42b-777e-4992-8523-1fab08a52604",
+              "name": "Unauthorized - Missing or Invalid API Key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "record_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cab5d6c6-482c-413d-9bb5-fd6aec109cd8",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "record_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    },\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e574ccf2-c819-42b9-a9f1-60f8f81df9b1",
+              "name": "Too Many Requests - Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "record_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    },\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef7cf7c2-eedf-469f-9f1b-e57be7de5d0a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_reports",
+                    "v1",
+                    "record_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInstanceIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    },\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://web.trailapp.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "262d5db2-ce96-4384-b161-52719bfd2f79",
+    "name": "Areas Task Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use this API to query details of your areas.\n[Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).\n\nAn API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.\n",
+      "type": "text/plain"
+    }
+  }
+}

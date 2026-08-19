@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Areas Task Reports API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://web.trailapp.com/api/public/task_reports/v1/comments",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Comments"
+        },
+        {
+          "info": {
+            "name": "Checklists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://web.trailapp.com/api/public/task_reports/v1/checklists",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Checklists"
+        },
+        {
+          "info": {
+            "name": "Task instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://web.trailapp.com/api/public/task_reports/v1/task_instances",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Task instances"
+        },
+        {
+          "info": {
+            "name": "Record logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://web.trailapp.com/api/public/task_reports/v1/record_logs",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Record logs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

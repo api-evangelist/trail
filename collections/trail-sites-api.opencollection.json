@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Areas Sites API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves user sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://web.trailapp.com/api/evo_api/sites"
+          },
+          "docs": "Retrieves user sites"
+        },
+        {
+          "info": {
+            "name": "Retrieves sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://web.trailapp.com/api/public/sites/v1/list",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves sites"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

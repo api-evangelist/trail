@@ -1,0 +1,590 @@
+{
+  "item": [
+    {
+      "id": "531c1dd0-d88d-41ed-a268-a87ee14ee44e",
+      "name": "Task Instances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4090f5e8-6066-489a-9948-bb921863ee59",
+          "name": "Task instances",
+          "request": {
+            "name": "Task instances",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "task_instances",
+                "v1",
+                "task_instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Must be equal to application/json",
+                "key": "Content_Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"siteId\": \"<integer>\",\n  \"taskTemplateId\": \"<integer>\",\n  \"startDatetime\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "877000b8-7c36-4bb1-9323-d5eb41f3cb16",
+              "name": "Task instances created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_instances",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteId\": 5,\n  \"taskTemplateId\": 17,\n  \"startDatetime\": \"2025-04-20 13:30\",\n  \"endDate\": \"2025-05-23\",\n  \"description\": \"My API generated task\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9251eae4-b63d-4f92-8dce-739e8f515661",
+              "name": "Unauthorized - Missing or Invalid API Key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_instances",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteId\": 5,\n  \"taskTemplateId\": 17,\n  \"startDatetime\": \"2025-04-20 13:30\",\n  \"endDate\": \"2025-05-23\",\n  \"description\": \"My API generated task\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    },\n    {\n      \"title\": \"Unauthorized\",\n      \"detail\": \"API key is missing or invalid\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "160eed3f-c728-4a82-b976-1a7ca1753d44",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_instances",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteId\": 5,\n  \"taskTemplateId\": 17,\n  \"startDatetime\": \"2025-04-20 13:30\",\n  \"endDate\": \"2025-05-23\",\n  \"description\": \"My API generated task\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    },\n    {\n      \"title\": \"Unprocessable request\",\n      \"detail\": \"Invalid IDs\",\n      \"status\": 422\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea6adfb8-c130-41db-8080-8b665211899a",
+              "name": "Too Many Requests - Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_instances",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteId\": 5,\n  \"taskTemplateId\": 17,\n  \"startDatetime\": \"2025-04-20 13:30\",\n  \"endDate\": \"2025-05-23\",\n  \"description\": \"My API generated task\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    },\n    {\n      \"title\": \"Too Many Requests\",\n      \"detail\": \"Rate limit exceeded. Try again later.\",\n      \"status\": 429\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "548efc1c-5d5f-4e4c-b349-ce8a06434150",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_instances",
+                    "v1",
+                    "task_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteId\": 5,\n  \"taskTemplateId\": 17,\n  \"startDatetime\": \"2025-04-20 13:30\",\n  \"endDate\": \"2025-05-23\",\n  \"description\": \"My API generated task\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    },\n    {\n      \"title\": \"Internal Server Error\",\n      \"detail\": \"An unexpected error occurred\",\n      \"status\": 500\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cd85e06-ead0-48ea-9c9b-9a2a8afb21f0",
+          "name": "Retrieve task instance",
+          "request": {
+            "name": "Retrieve task instance",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "task_instances",
+                "v1",
+                "task_instances",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the timeline task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Must be equal to application/json",
+                "key": "Content_Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b1466c2e-301a-45fa-bf58-618ea19af87f",
+              "name": "Task instance retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_instances",
+                    "v1",
+                    "task_instances",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the timeline task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"priority\": \"medium\",\n  \"actionTaskInstanceIds\": [],\n  \"addedChecklistCount\": 0,\n  \"areaId\": null,\n  \"areaName\": null,\n  \"businessDates\": [\n    \"2025-07-14\"\n  ],\n  \"completedByUserId\": null,\n  \"completedByUserName\": null,\n  \"exceptionCount\": 0,\n  \"flaggedChecklistCount\": 0,\n  \"linkedTaskInstanceId\": null,\n  \"recordLogExceptionCount\": 0,\n  \"requiresPin\": false,\n  \"siteExternalId\": null,\n  \"siteName\": \"Runolfsson Group\",\n  \"status\": \"later\",\n  \"tags\": [],\n  \"taskInstanceName\": \"Timeline Task\",\n  \"checklist\": [\n    {\n      \"checkId\": 1,\n      \"checkName\": \"Check the fridge\",\n      \"status\": \"unchecked\",\n      \"completedDatetime\": null,\n      \"completedByUserName\": null,\n      \"completedByUserId\": null,\n      \"header\": null\n    }\n  ],\n  \"comments\": {\n    \"checklist\": [\n      {\n        \"checkId\": 1,\n        \"content\": \"Text\",\n        \"attachmentUrls\": [],\n        \"commentedDatetime\": \"2025-07-14T23:24:01.157Z\",\n        \"commentedByUserName\": \"Org Admin 11\",\n        \"commentedByUserId\": 1\n      }\n    ],\n    \"recordLog\": [\n      {\n        \"recordLogRowIndex\": 0,\n        \"recordLogFieldId\": 1750793291901,\n        \"content\": \"RecordLog comment\",\n        \"attachmentUrls\": [],\n        \"commentedDatetime\": \"2025-07-14T23:24:01.162Z\",\n        \"commentedByUserName\": \"Org Admin 11\",\n        \"commentedByUserId\": 1\n      }\n    ],\n    \"task\": [\n      {\n        \"content\": \"Task comment\",\n        \"attachmentUrls\": [],\n        \"commentedDatetime\": \"2025-07-14T23:24:01.000Z\",\n        \"commentedByUserName\": \"Org Admin 11\",\n        \"commentedByUserId\": 1\n      }\n    ]\n  },\n  \"recordLogs\": {\n    \"recordLogId\": 1,\n    \"records\": [\n      {\n        \"My Field\": {\n          \"id\": \"1750793291901\",\n          \"name\": \"My Field\",\n          \"value\": \"c\",\n          \"type\": \"options\",\n          \"hasError\": false,\n          \"errors\": []\n        },\n        \"lastUpdatedAt\": \"2025-07-15T00:24:00+01:00\",\n        \"hasError\": false\n      }\n    ],\n    \"hasError\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a41ec70-31eb-4b4f-afe2-4df8c888c29f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "task_instances",
+                    "v1",
+                    "task_instances",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the timeline task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be equal to application/json",
+                    "key": "Content_Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Not authorised\",\n      \"detail\": \"Invalid API key\",\n      \"status\": 401\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://web.trailapp.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e7985db8-9f64-4949-8a5f-87a8d8ae3340",
+    "name": "Areas Task Instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use this API to query details of your areas.\n[Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).\n\nAn API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.\n",
+      "type": "text/plain"
+    }
+  }
+}

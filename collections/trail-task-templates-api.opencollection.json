@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Areas Task Templates API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves task templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://web.trailapp.com/api/evo_api/task_templates"
+          },
+          "docs": "Retrieves task templates"
+        },
+        {
+          "info": {
+            "name": "Retrieves task templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://web.trailapp.com/api/public/task_templates/v1/list",
+            "headers": [
+              {
+                "name": "Content_Type",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "API_KEY",
+              "value": "{{API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves task templates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
