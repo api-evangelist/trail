@@ -35,6 +35,13 @@ tags:
 - Task Management
 - Compliance
 - Food Safety
+tags_raw:
+- Company
+- Hospitality
+- Checklists
+- Task Management
+- Compliance
+- Food Safety
 - Operations
 apis:
 - aid: trail:trail-areas-api
@@ -148,6 +155,8 @@ apis:
   humanURL: https://web.trailapp.com/api-docs/index.html
   baseURL: https://web.trailapp.com/api
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
