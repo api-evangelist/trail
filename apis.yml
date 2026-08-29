@@ -6,6 +6,18 @@ description: Trail is a digital checklist and work management platform for hospi
   sites, and publishes a set of API-key-secured public APIs (Task Reports, Task Instances, Task Templates,
   Sites, Areas, Tags, Scores) plus an OAuth2-secured Evo API, documented with OpenAPI at web.trailapp.com/api-docs.
 url: https://raw.githubusercontent.com/api-evangelist/trail/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
