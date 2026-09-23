@@ -1,15 +1,21 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Areas Task Instances API
+  title: Task Instances API
   version: v1
-  description: 'You can use this API to query details of your areas.
+  description: 'This is the beta version of the Task Instances API. You can use this to create new task instances, using existing automated task templates.
 
-    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
+    Learn more about automated tasks.
 
 
-    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
+    You can use our other APIs to obtain necessary IDs of sites
 
-    '
+    and task templates.
+
+
+    An API_KEY header is required to authorise requests. You must have third party integration enabled to use this API.
+
+
+    The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.'
 servers:
 - url: https://web.trailapp.com/api
 - url: https://us.trailapp.com/api
@@ -102,6 +108,8 @@ paths:
               - siteId
               - taskTemplateId
         required: true
+      operationId: postPublicTaskInstancesV1TaskInstances
+      x-operation-id-source: derived
   /public/task_instances/v1/task_instances/{id}:
     get:
       summary: Retrieve task instance
@@ -207,54 +215,10 @@ paths:
                     - title: Not authorised
                       detail: Invalid API key
                       status: 401
+      operationId: getPublicTaskInstancesV1TaskInstancesById
+      x-operation-id-source: derived
 components:
   schemas:
-    Error401:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unauthorized
-              detail:
-                type: string
-                example: API key is missing or invalid
-              status:
-                type: integer
-                example: 401
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Error422:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unprocessable request
-              detail:
-                type: string
-                example: Invalid IDs
-              status:
-                type: integer
-                example: 422
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     Error429:
       type: object
       properties:
@@ -290,36 +254,42 @@ components:
         addedChecklistCount:
           type: integer
         areaId:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         areaName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         businessDates:
           type: array
           items:
             type: string
             format: date
         completedByUserId:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         completedByUserName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         exceptionCount:
           type: integer
         flaggedChecklistCount:
           type: integer
         linkedTaskInstanceId:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         recordLogExceptionCount:
           type: integer
         requiresPin:
           type: boolean
         siteExternalId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         siteName:
           type: string
         status:
@@ -350,18 +320,22 @@ components:
               status:
                 type: string
               completedDatetime:
-                type: string
+                type:
+                - string
+                - 'null'
                 format: date-time
-                nullable: true
               completedByUserName:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
               completedByUserId:
-                type: integer
-                nullable: true
+                type:
+                - integer
+                - 'null'
               header:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
             required:
             - checkId
             - checkName
@@ -486,6 +460,29 @@ components:
       - checklist
       - comments
       - recordLogs
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
     Error500:
       type: object
       properties:
@@ -503,6 +500,29 @@ components:
               status:
                 type: integer
                 example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error422:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unprocessable request
+              detail:
+                type: string
+                example: Invalid IDs
+              status:
+                type: integer
+                example: 422
             required:
             - title
             - detail

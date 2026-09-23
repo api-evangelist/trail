@@ -1,15 +1,15 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Areas Scores API
+  title: Scores API
   version: v1
-  description: 'You can use this API to query details of your areas.
+  description: 'You can use this API to query details of your scores, by date and time period, and optionally by task templates,
 
-    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
+    tags, sites and/or areas.
+
+    Learn more about scores.
 
 
-    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
-
-    '
+    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.'
 servers:
 - url: https://web.trailapp.com/api
 - url: https://us.trailapp.com/api
@@ -232,9 +232,11 @@ paths:
               - endDate
               - dateInterval
         required: true
+      operationId: postPublicScoresV1Scores
+      x-operation-id-source: derived
 components:
   schemas:
-    Error401:
+    Error429:
       type: object
       properties:
         errors:
@@ -244,13 +246,13 @@ components:
             properties:
               title:
                 type: string
-                example: Unauthorized
+                example: Too Many Requests
               detail:
                 type: string
-                example: API key is missing or invalid
+                example: Rate limit exceeded. Try again later.
               status:
                 type: integer
-                example: 401
+                example: 429
             required:
             - title
             - detail
@@ -293,9 +295,10 @@ components:
                   example: 75
                   description: The score out of 100 for the period
                 status:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   example: active
-                  nullable: true
                   enum:
                   - active
                   - inactive
@@ -330,7 +333,7 @@ components:
       - name
       - average
       - scores
-    Error422:
+    Error401:
       type: object
       properties:
         errors:
@@ -340,36 +343,13 @@ components:
             properties:
               title:
                 type: string
-                example: Unprocessable request
+                example: Unauthorized
               detail:
                 type: string
-                example: Invalid IDs
+                example: API key is missing or invalid
               status:
                 type: integer
-                example: 422
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Error429:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Too Many Requests
-              detail:
-                type: string
-                example: Rate limit exceeded. Try again later.
-              status:
-                type: integer
-                example: 429
+                example: 401
             required:
             - title
             - detail
@@ -393,6 +373,29 @@ components:
               status:
                 type: integer
                 example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error422:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unprocessable request
+              detail:
+                type: string
+                example: Invalid IDs
+              status:
+                type: integer
+                example: 422
             required:
             - title
             - detail

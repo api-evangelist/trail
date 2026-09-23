@@ -1,19 +1,21 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Areas Tasks API
+  title: Evo Tasks API
   version: v1
-  description: 'You can use this API to query details of your areas.
-
-    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
+  description: 'You can use this API to query and manage sites, task templates, and tasks.
 
 
-    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
-
-    '
+    OAuth2 authentication is required to authorise requests. The token can be obtained from the Identity Provider.'
 servers:
 - url: https://web.trailapp.com/api
 - url: https://us.trailapp.com/api
   description: US
+security:
+- oauth2:
+  - openid
+  - profile
+  - email
+  - access.trail.api
 tags:
 - name: Tasks
 paths:
@@ -132,6 +134,29 @@ paths:
                 $ref: '#/components/schemas/Error401'
 components:
   schemas:
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
     Subtask:
       type: object
       properties:
@@ -148,10 +173,11 @@ components:
           example: unchecked
           description: Subtask completion value
         position:
-          type: integer
+          type:
+          - integer
+          - 'null'
           example: 0
           description: Subtask position
-          nullable: true
       required:
       - id
       - name
@@ -182,16 +208,18 @@ components:
           example: '2024-01-01T10:00:00Z'
           description: Task end time
         completed_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2024-01-01T09:30:00Z'
           description: Task completion time
-          nullable: true
         completed_by:
-          type: string
+          type:
+          - string
+          - 'null'
           example: John Doe
           description: Name of user who completed the task
-          nullable: true
         status:
           type: string
           example: completed
@@ -205,34 +233,18 @@ components:
       - id
       - name
       - status
-    Error401:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unauthorized
-              detail:
-                type: string
-                example: API key is missing or invalid
-              status:
-                type: integer
-                example: 401
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
   securitySchemes:
-    API_KEY:
-      type: apiKey
-      name: API_KEY
-      in: header
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://preprodidentity.accessacloud.com/connect/authorize
+          tokenUrl: /api/evo_api/oauth/token
+          scopes:
+            openid: OpenID
+            profile: Profile
+            email: Email
+            access.trail.api: Trail API
 externalDocs:
   description: How to obtain an API key
   url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api

@@ -1,15 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Areas Task Templates API
+  title: Trail Task Templates API
   version: v1
-  description: 'You can use this API to query details of your areas.
-
-    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
-
-
-    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
-
-    '
+  description: 'Operations tagged Task Templates across 2 of this provider''s published API definitions: trail_evo_api_v1.yaml, trail_task_templates_v1.yaml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://web.trailapp.com/api
 - url: https://us.trailapp.com/api
@@ -44,6 +37,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error401'
+    servers:
+    - url: https://web.trailapp.com/api
+    - url: https://us.trailapp.com/api
+      description: US
   /public/task_templates/v1/list:
     get:
       summary: Retrieves task templates
@@ -114,32 +111,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error500'
+      operationId: getPublicTaskTemplatesV1List
+      x-operation-id-source: derived
+    servers:
+    - url: https://web.trailapp.com/api
+    - url: https://us.trailapp.com/api
+      description: US
 components:
   schemas:
-    Subtask:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-          description: Subtask ID
-        name:
-          type: string
-          example: Clean floors
-          description: Subtask name
-        completion_value:
-          type: string
-          example: unchecked
-          description: Subtask completion value
-        position:
-          type: integer
-          example: 0
-          description: Subtask position
-          nullable: true
-      required:
-      - id
-      - name
-      - completion_value
     Error401:
       type: object
       properties:
@@ -163,6 +142,31 @@ components:
             - status
       required:
       - errors
+    Subtask:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Subtask ID
+        name:
+          type: string
+          example: Clean floors
+          description: Subtask name
+        completion_value:
+          type: string
+          example: unchecked
+          description: Subtask completion value
+        position:
+          type:
+          - integer
+          - 'null'
+          example: 0
+          description: Subtask position
+      required:
+      - id
+      - name
+      - completion_value
     TaskTemplate:
       type: object
       properties:
@@ -209,52 +213,6 @@ components:
       - name
       - template_type
       - status
-    Error429:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Too Many Requests
-              detail:
-                type: string
-                example: Rate limit exceeded. Try again later.
-              status:
-                type: integer
-                example: 429
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Error500:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Internal Server Error
-              detail:
-                type: string
-                example: An unexpected error occurred
-              status:
-                type: integer
-                example: 500
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     TaskTemplate_2:
       type: object
       description: An object representing a summary of a task template - the model that is used to build new task instances
@@ -316,7 +274,64 @@ components:
       - name
       - status
       - type
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
   securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://preprodidentity.accessacloud.com/connect/authorize
+          tokenUrl: /api/evo_api/oauth/token
+          scopes:
+            openid: OpenID
+            profile: Profile
+            email: Email
+            access.trail.api: Trail API
     API_KEY:
       type: apiKey
       name: API_KEY
@@ -324,3 +339,6 @@ components:
 externalDocs:
   description: How to obtain an API key
   url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api
+x-refined-from:
+- trail_evo_api_v1.yaml
+- trail_task_templates_v1.yaml

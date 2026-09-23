@@ -1,28 +1,60 @@
 {
   "provider": "trail",
   "sources": [
-    "trail-areas-api-openapi.yml",
-    "trail-scores-api-openapi.yml",
-    "trail-sites-api-openapi.yml",
-    "trail-tags-api-openapi.yml",
-    "trail-task-instances-api-openapi.yml",
-    "trail-task-reports-api-openapi.yml",
-    "trail-task-templates-api-openapi.yml",
-    "trail-tasks-api-openapi.yml"
+    "_original/trail_areas_v1.yaml",
+    "_original/trail_evo_api_v1.yaml",
+    "_original/trail_scores_v1.yaml",
+    "_original/trail_sites_v1.yaml",
+    "_original/trail_tags_v1.yaml",
+    "_original/trail_task_instances_v1.yaml",
+    "_original/trail_task_reports_v1.yaml",
+    "_original/trail_task_templates_v1.yaml"
   ],
   "outputs": [
     "trail-areas-api-openapi.yml",
-    "trail-scores-api-openapi.yml",
     "trail-sites-api-openapi.yml",
+    "trail-task-templates-api-openapi.yml",
+    "trail-tasks-api-openapi.yml",
+    "trail-scores-api-openapi.yml",
     "trail-tags-api-openapi.yml",
     "trail-task-instances-api-openapi.yml",
-    "trail-task-reports-api-openapi.yml",
-    "trail-task-templates-api-openapi.yml",
-    "trail-tasks-api-openapi.yml"
+    "trail-task-reports-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (8 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "trail_areas_v1.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "trail_areas_v1.yaml: declared missing tag: Areas",
+    "trail_evo_api_v1.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "trail_evo_api_v1.yaml: declared missing tag: Sites",
+    "trail_evo_api_v1.yaml: declared missing tag: Task Templates",
+    "trail_evo_api_v1.yaml: declared missing tag: Tasks",
+    "trail_scores_v1.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "trail_scores_v1.yaml: declared missing tag: Scores",
+    "trail_sites_v1.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "trail_sites_v1.yaml: declared missing tag: Sites",
+    "trail_tags_v1.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "trail_tags_v1.yaml: declared missing tag: Tags",
+    "trail_task_instances_v1.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "trail_task_instances_v1.yaml: declared missing tag: Task Instances",
+    "trail_task_reports_v1.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "trail_task_reports_v1.yaml: declared missing tag: Task Reports",
+    "trail_task_templates_v1.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "trail_task_templates_v1.yaml: declared missing tag: Task Templates",
+    "tag 'Sites' spans 2 source specs (trail_evo_api_v1.yaml, trail_sites_v1.yaml): per-path servers applied",
+    "tag 'Task Templates' spans 2 source specs (trail_evo_api_v1.yaml, trail_task_templates_v1.yaml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "trail-areas-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trail-scores-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trail-sites-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trail-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trail-task-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trail-task-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trail-task-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trail-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

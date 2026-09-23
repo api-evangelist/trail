@@ -1,15 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Areas Task Reports API
+  title: Task Reports API
   version: v1
-  description: 'You can use this API to query details of your areas.
-
-    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
-
-
-    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
-
-    '
+  description: You can use this API to request task instances, record logs, checklist items and comments via the Task Reports routes.
 servers:
 - url: https://web.trailapp.com/api
 - url: https://us.trailapp.com/api
@@ -146,6 +139,8 @@ paths:
                   description: The task instance IDs to get comments for. Maximum of 1000 IDs in a single request.
               required:
               - taskInstanceIds
+      operationId: postPublicTaskReportsV1Comments
+      x-operation-id-source: derived
   /public/task_reports/v1/checklists:
     post:
       summary: Checklists
@@ -247,6 +242,8 @@ paths:
                   description: The task instance IDs to get checklist items for. Maximum of 1000 IDs in a single request.
               required:
               - taskInstanceIds
+      operationId: postPublicTaskReportsV1Checklists
+      x-operation-id-source: derived
   /public/task_reports/v1/task_instances:
     post:
       summary: Task instances
@@ -315,8 +312,9 @@ paths:
                     type: object
                     properties:
                       nextCursor:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                         description: Cursor for the next page of results
         '401':
           description: Unauthorized - Missing or Invalid API Key
@@ -370,6 +368,8 @@ paths:
               - endDate
               - taskTemplateIds
         required: true
+      operationId: postPublicTaskReportsV1TaskInstances
+      x-operation-id-source: derived
   /public/task_reports/v1/record_logs:
     post:
       summary: Record logs
@@ -511,9 +511,62 @@ paths:
                   description: The task instance IDs to get record logs for. Maximum of 1000 IDs in a single request.
               required:
               - taskInstanceIds
+      operationId: postPublicTaskReportsV1RecordLogs
+      x-operation-id-source: derived
 components:
   schemas:
-    Error401:
+    ChecklistItem:
+      type: object
+      description: A checklist item object
+      properties:
+        checkId:
+          type: integer
+          description: Unique identifier for the checklist item
+          example: 0
+        checkName:
+          type: string
+          description: The name of the checklist item
+          example: Check the fridge
+        status:
+          type: string
+          description: 'The status of the checklist item. Possible values: unchecked, done, notApplicable, notDone, neverApplicable'
+          enum:
+          - unchecked
+          - done
+          - notApplicable
+          - notDone
+          - neverApplicable
+          example: done
+        completedDatetime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: ISO8601 datetime representing the time the checklist item was completed. Null if not completed
+          example: '2023-05-23T14:15:22Z'
+        completedByUserName:
+          type:
+          - string
+          - 'null'
+          description: The name of the user who completed the checklist item. Null if not completed
+          example: Jane
+        completedByUserId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the user who completed the checklist item. Null if not completed
+          example: 144
+        header:
+          type:
+          - string
+          - 'null'
+          description: The name of the header the checklist item is under. Null if not under a header
+          example: Fridge checks
+      required:
+      - checkId
+      - checkName
+      - status
+    Error429:
       type: object
       properties:
         errors:
@@ -523,13 +576,13 @@ components:
             properties:
               title:
                 type: string
-                example: Unauthorized
+                example: Too Many Requests
               detail:
                 type: string
-                example: API key is missing or invalid
+                example: Rate limit exceeded. Try again later.
               status:
                 type: integer
-                example: 401
+                example: 429
             required:
             - title
             - detail
@@ -586,16 +639,19 @@ components:
                     items:
                       type: string
                   score:
-                    type: integer
-                    nullable: true
+                    type:
+                    - integer
+                    - 'null'
                     description: Optional value representing the score of the field. Unscored fields do not have this property
                   scoreOutOf:
-                    type: integer
-                    nullable: true
+                    type:
+                    - integer
+                    - 'null'
                     description: Optional value representing the total possible score of the field. Unscored fields do not have this property
                   percentageScore:
-                    type: number
-                    nullable: true
+                    type:
+                    - number
+                    - 'null'
                     description: Optional value representing the percentage of score out of total possible score. Unscored fields do not have this property
                 required:
                 - id
@@ -644,16 +700,19 @@ components:
                         items:
                           type: string
                       score:
-                        type: integer
-                        nullable: true
+                        type:
+                        - integer
+                        - 'null'
                         description: Optional value representing the score of the field. Unscored fields do not have this property
                       scoreOutOf:
-                        type: integer
-                        nullable: true
+                        type:
+                        - integer
+                        - 'null'
                         description: Optional value representing the total possible score of the field. Unscored fields do not have this property
                       percentageScore:
-                        type: number
-                        nullable: true
+                        type:
+                        - number
+                        - 'null'
                         description: Optional value representing the percentage of score out of total possible score. Unscored fields do not have this property
                     required:
                     - id
@@ -666,16 +725,19 @@ components:
                     type: boolean
                     description: A boolean representing whether any fields in this section have errors
                   score:
-                    type: integer
-                    nullable: true
+                    type:
+                    - integer
+                    - 'null'
                     description: Optional value representing the score of the section. Unscored sections do not have this property
                   scoreOutOf:
-                    type: integer
-                    nullable: true
+                    type:
+                    - integer
+                    - 'null'
                     description: Optional value representing the total possible score of the section. Unscored sections do not have this property
                   percentageScore:
-                    type: number
-                    nullable: true
+                    type:
+                    - number
+                    - 'null'
                     description: Optional value representing the percentage of section score out of total possible section score. Unscored sections do not have this property
                 required:
                 - '{fieldName}'
@@ -688,16 +750,19 @@ components:
                 type: boolean
                 description: A boolean representing whether any fields in this record have errors
               score:
-                type: integer
-                nullable: true
+                type:
+                - integer
+                - 'null'
                 description: Optional value representing the score of the record. Unscored records do not have this property
               scoreOutOf:
-                type: integer
-                nullable: true
+                type:
+                - integer
+                - 'null'
                 description: Optional value representing the total possible score of  the record. Unscored records do not have this property
               percentageScore:
-                type: number
-                nullable: true
+                type:
+                - number
+                - 'null'
                 description: Optional value representing the percentage of record score out of total possible record score. Unscored records do not have this property
             required:
             - '{fieldName}'
@@ -707,69 +772,25 @@ components:
           type: boolean
           description: A boolean representing if any field in the record log has errors
         score:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Optional value representing the score of the record log. Unscored record logs do not have this property
         scoreOutOf:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Optional value representing the total possible score of the record log. Unscored record logs do not have this property
         percentageScore:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Optional value representing the percentage of record log score out of total possible record log score. Unscored record logs do not have this property
       required:
       - recordLogId
       - records
       - hasError
-    ChecklistItem:
-      type: object
-      description: A checklist item object
-      properties:
-        checkId:
-          type: integer
-          description: Unique identifier for the checklist item
-          example: 0
-        checkName:
-          type: string
-          description: The name of the checklist item
-          example: Check the fridge
-        status:
-          type: string
-          description: 'The status of the checklist item. Possible values: unchecked, done, notApplicable, notDone, neverApplicable'
-          enum:
-          - unchecked
-          - done
-          - notApplicable
-          - notDone
-          - neverApplicable
-          example: done
-        completedDatetime:
-          type: string
-          format: date-time
-          nullable: true
-          description: ISO8601 datetime representing the time the checklist item was completed. Null if not completed
-          example: '2023-05-23T14:15:22Z'
-        completedByUserName:
-          type: string
-          nullable: true
-          description: The name of the user who completed the checklist item. Null if not completed
-          example: Jane
-        completedByUserId:
-          type: integer
-          nullable: true
-          description: The ID of the user who completed the checklist item. Null if not completed
-          example: 144
-        header:
-          type: string
-          nullable: true
-          description: The name of the header the checklist item is under. Null if not under a header
-          example: Fridge checks
-      required:
-      - checkId
-      - checkName
-      - status
-    Error422:
+    Error401:
       type: object
       properties:
         errors:
@@ -779,113 +800,19 @@ components:
             properties:
               title:
                 type: string
-                example: Unprocessable request
+                example: Unauthorized
               detail:
                 type: string
-                example: Invalid IDs
+                example: API key is missing or invalid
               status:
                 type: integer
-                example: 422
+                example: 401
             required:
             - title
             - detail
             - status
       required:
       - errors
-    Error429:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Too Many Requests
-              detail:
-                type: string
-                example: Rate limit exceeded. Try again later.
-              status:
-                type: integer
-                example: 429
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Error500:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Internal Server Error
-              detail:
-                type: string
-                example: An unexpected error occurred
-              status:
-                type: integer
-                example: 500
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Comment:
-      type: object
-      description: A comment object
-      properties:
-        content:
-          type: string
-          description: The text of the comment
-          example: Late due to fire alarm
-        attachmentUrls:
-          type: array
-          description: An array of the URLs of any files attached to the comment
-          items:
-            type: string
-            example: http://www.example.com/image
-        commentedDateTime:
-          type: string
-          format: date-time
-          description: An ISO8601 datetime representing the time the comment was posted
-          example: '2025-03-23T04:15:22Z'
-        commentedByUserName:
-          type: string
-          description: The name of the user who posted the comment
-          example: Sarah
-        commentedByUserId:
-          type: integer
-          description: The ID of the user who posted the comment
-          example: 123
-        checkId:
-          type: integer
-          nullable: true
-          description: Optional field. The ID of the checklist item the comment was posted on (if a checklist level comment)
-          example: 1499547660
-        recordLogRowIndex:
-          type: integer
-          nullable: true
-          description: Optional field. The index of the record log record the comment was posted on (if a record log level comment)
-          example: 0
-        recordLogFieldId:
-          type: integer
-          nullable: true
-          description: Optional field. The ID of the record log the comment was posted on (if a record log level comment)
-          example: '1687490122617'
-      required:
-      - content
-      - attachmentUrls
-      - commentedDateTime
-      - commentedByUserName
-      - commentedByUserId
     TaskInstance:
       type: object
       description: An object representing a task instance
@@ -908,17 +835,20 @@ components:
           format: date_time
           description: ISO8601 datetime when the task is due from
         completedDatetime:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date_time
-          nullable: true
           description: ISO8601 datetime when the task was completed, null if not completed
         completedByUserId:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: ID of the user who completed the task, null if not completed
         completedByUserName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Name of the user who completed the task, null if not completed
         taskType:
           type: string
@@ -968,8 +898,9 @@ components:
             type: integer
           description: IDs of related action tasks
         linkedTaskInstanceId:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: ID of a linked task instance, if applicable
         businessDates:
           type: array
@@ -996,6 +927,103 @@ components:
       - siteId
       - siteName
       - status
+    Comment:
+      type: object
+      description: A comment object
+      properties:
+        content:
+          type: string
+          description: The text of the comment
+          example: Late due to fire alarm
+        attachmentUrls:
+          type: array
+          description: An array of the URLs of any files attached to the comment
+          items:
+            type: string
+            example: http://www.example.com/image
+        commentedDateTime:
+          type: string
+          format: date-time
+          description: An ISO8601 datetime representing the time the comment was posted
+          example: '2025-03-23T04:15:22Z'
+        commentedByUserName:
+          type: string
+          description: The name of the user who posted the comment
+          example: Sarah
+        commentedByUserId:
+          type: integer
+          description: The ID of the user who posted the comment
+          example: 123
+        checkId:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The ID of the checklist item the comment was posted on (if a checklist level comment)
+          example: 1499547660
+        recordLogRowIndex:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The index of the record log record the comment was posted on (if a record log level comment)
+          example: 0
+        recordLogFieldId:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The ID of the record log the comment was posted on (if a record log level comment)
+          example: '1687490122617'
+      required:
+      - content
+      - attachmentUrls
+      - commentedDateTime
+      - commentedByUserName
+      - commentedByUserId
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error422:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unprocessable request
+              detail:
+                type: string
+                example: Invalid IDs
+              status:
+                type: integer
+                example: 422
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
   securitySchemes:
     API_KEY:
       type: apiKey

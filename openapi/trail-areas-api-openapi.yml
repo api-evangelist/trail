@@ -1,15 +1,13 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Areas API
   version: v1
   description: 'You can use this API to query details of your areas.
 
-    [Learn more about areas](https://answers.trailapp.com/en/articles/8337026-creating-managing-areas).
+    Learn more about areas.
 
 
-    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.
-
-    '
+    An API_KEY header is required to authorise requests. The rate limiting for endpoints is set to 60 requests (to any endpoint) per 60 seconds.'
 servers:
 - url: https://web.trailapp.com/api
 - url: https://us.trailapp.com/api
@@ -71,9 +69,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error500'
+      operationId: getPublicAreasV1List
+      x-operation-id-source: derived
 components:
   schemas:
-    Error500:
+    Error401:
       type: object
       properties:
         errors:
@@ -83,13 +83,13 @@ components:
             properties:
               title:
                 type: string
-                example: Internal Server Error
+                example: Unauthorized
               detail:
                 type: string
-                example: An unexpected error occurred
+                example: API key is missing or invalid
               status:
                 type: integer
-                example: 500
+                example: 401
             required:
             - title
             - detail
@@ -119,29 +119,6 @@ components:
             - status
       required:
       - errors
-    Error401:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unauthorized
-              detail:
-                type: string
-                example: API key is missing or invalid
-              status:
-                type: integer
-                example: 401
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     Area:
       type: object
       description: An object representing a summary of an area - the model that represents the areas (groups of sites) in your organisation
@@ -157,6 +134,29 @@ components:
       required:
       - id
       - name
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
   securitySchemes:
     API_KEY:
       type: apiKey
