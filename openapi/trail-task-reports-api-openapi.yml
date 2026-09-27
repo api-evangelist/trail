@@ -515,58 +515,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ChecklistItem:
-      type: object
-      description: A checklist item object
-      properties:
-        checkId:
-          type: integer
-          description: Unique identifier for the checklist item
-          example: 0
-        checkName:
-          type: string
-          description: The name of the checklist item
-          example: Check the fridge
-        status:
-          type: string
-          description: 'The status of the checklist item. Possible values: unchecked, done, notApplicable, notDone, neverApplicable'
-          enum:
-          - unchecked
-          - done
-          - notApplicable
-          - notDone
-          - neverApplicable
-          example: done
-        completedDatetime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: ISO8601 datetime representing the time the checklist item was completed. Null if not completed
-          example: '2023-05-23T14:15:22Z'
-        completedByUserName:
-          type:
-          - string
-          - 'null'
-          description: The name of the user who completed the checklist item. Null if not completed
-          example: Jane
-        completedByUserId:
-          type:
-          - integer
-          - 'null'
-          description: The ID of the user who completed the checklist item. Null if not completed
-          example: 144
-        header:
-          type:
-          - string
-          - 'null'
-          description: The name of the header the checklist item is under. Null if not under a header
-          example: Fridge checks
-      required:
-      - checkId
-      - checkName
-      - status
-    Error429:
+    Error500:
       type: object
       properties:
         errors:
@@ -576,13 +525,13 @@ components:
             properties:
               title:
                 type: string
-                example: Too Many Requests
+                example: Internal Server Error
               detail:
                 type: string
-                example: Rate limit exceeded. Try again later.
+                example: An unexpected error occurred
               status:
                 type: integer
-                example: 429
+                example: 500
             required:
             - title
             - detail
@@ -790,6 +739,103 @@ components:
       - recordLogId
       - records
       - hasError
+    Error422:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unprocessable request
+              detail:
+                type: string
+                example: Invalid IDs
+              status:
+                type: integer
+                example: 422
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    ChecklistItem:
+      type: object
+      description: A checklist item object
+      properties:
+        checkId:
+          type: integer
+          description: Unique identifier for the checklist item
+          example: 0
+        checkName:
+          type: string
+          description: The name of the checklist item
+          example: Check the fridge
+        status:
+          type: string
+          description: 'The status of the checklist item. Possible values: unchecked, done, notApplicable, notDone, neverApplicable'
+          enum:
+          - unchecked
+          - done
+          - notApplicable
+          - notDone
+          - neverApplicable
+          example: done
+        completedDatetime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: ISO8601 datetime representing the time the checklist item was completed. Null if not completed
+          example: '2023-05-23T14:15:22Z'
+        completedByUserName:
+          type:
+          - string
+          - 'null'
+          description: The name of the user who completed the checklist item. Null if not completed
+          example: Jane
+        completedByUserId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the user who completed the checklist item. Null if not completed
+          example: 144
+        header:
+          type:
+          - string
+          - 'null'
+          description: The name of the header the checklist item is under. Null if not under a header
+          example: Fridge checks
+      required:
+      - checkId
+      - checkName
+      - status
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
     Error401:
       type: object
       properties:
@@ -978,52 +1024,6 @@ components:
       - commentedDateTime
       - commentedByUserName
       - commentedByUserId
-    Error500:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Internal Server Error
-              detail:
-                type: string
-                example: An unexpected error occurred
-              status:
-                type: integer
-                example: 500
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Error422:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unprocessable request
-              detail:
-                type: string
-                example: Invalid IDs
-              status:
-                type: integer
-                example: 422
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
   securitySchemes:
     API_KEY:
       type: apiKey

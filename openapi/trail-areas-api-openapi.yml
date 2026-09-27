@@ -73,7 +73,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Error401:
+    Error500:
       type: object
       properties:
         errors:
@@ -83,13 +83,13 @@ components:
             properties:
               title:
                 type: string
-                example: Unauthorized
+                example: Internal Server Error
               detail:
                 type: string
-                example: API key is missing or invalid
+                example: An unexpected error occurred
               status:
                 type: integer
-                example: 401
+                example: 500
             required:
             - title
             - detail
@@ -134,7 +134,7 @@ components:
       required:
       - id
       - name
-    Error500:
+    Error401:
       type: object
       properties:
         errors:
@@ -144,13 +144,13 @@ components:
             properties:
               title:
                 type: string
-                example: Internal Server Error
+                example: Unauthorized
               detail:
                 type: string
-                example: An unexpected error occurred
+                example: API key is missing or invalid
               status:
                 type: integer
-                example: 500
+                example: 401
             required:
             - title
             - detail

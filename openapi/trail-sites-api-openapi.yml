@@ -242,29 +242,6 @@ components:
       - id
       - name
       - status
-    Error429:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Too Many Requests
-              detail:
-                type: string
-                example: Rate limit exceeded. Try again later.
-              status:
-                type: integer
-                example: 429
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     Error500:
       type: object
       properties:
@@ -282,6 +259,29 @@ components:
               status:
                 type: integer
                 example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
             required:
             - title
             - detail
