@@ -109,6 +109,29 @@ paths:
       description: US
 components:
   schemas:
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
     Site:
       type: object
       properties:
@@ -166,7 +189,7 @@ components:
       - id
       - name
       - area_name
-    Error401:
+    Error500:
       type: object
       properties:
         errors:
@@ -176,13 +199,13 @@ components:
             properties:
               title:
                 type: string
-                example: Unauthorized
+                example: Internal Server Error
               detail:
                 type: string
-                example: API key is missing or invalid
+                example: An unexpected error occurred
               status:
                 type: integer
-                example: 401
+                example: 500
             required:
             - title
             - detail
@@ -242,29 +265,6 @@ components:
       - id
       - name
       - status
-    Error500:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Internal Server Error
-              detail:
-                type: string
-                example: An unexpected error occurred
-              status:
-                type: integer
-                example: 500
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     Error429:
       type: object
       properties:

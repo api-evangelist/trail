@@ -119,6 +119,54 @@ paths:
       description: US
 components:
   schemas:
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Subtask:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Subtask ID
+        name:
+          type: string
+          example: Clean floors
+          description: Subtask name
+        completion_value:
+          type: string
+          example: unchecked
+          description: Subtask completion value
+        position:
+          type:
+          - integer
+          - 'null'
+          example: 0
+          description: Subtask position
+      required:
+      - id
+      - name
+      - completion_value
     TaskTemplate:
       type: object
       properties:
@@ -165,32 +213,7 @@ components:
       - name
       - template_type
       - status
-    Subtask:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-          description: Subtask ID
-        name:
-          type: string
-          example: Clean floors
-          description: Subtask name
-        completion_value:
-          type: string
-          example: unchecked
-          description: Subtask completion value
-        position:
-          type:
-          - integer
-          - 'null'
-          example: 0
-          description: Subtask position
-      required:
-      - id
-      - name
-      - completion_value
-    Error401:
+    Error500:
       type: object
       properties:
         errors:
@@ -200,13 +223,36 @@ components:
             properties:
               title:
                 type: string
-                example: Unauthorized
+                example: Internal Server Error
               detail:
                 type: string
-                example: API key is missing or invalid
+                example: An unexpected error occurred
               status:
                 type: integer
-                example: 401
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
             required:
             - title
             - detail
@@ -274,52 +320,6 @@ components:
       - name
       - status
       - type
-    Error500:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Internal Server Error
-              detail:
-                type: string
-                example: An unexpected error occurred
-              status:
-                type: integer
-                example: 500
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Error429:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Too Many Requests
-              detail:
-                type: string
-                example: Rate limit exceeded. Try again later.
-              status:
-                type: integer
-                example: 429
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
   securitySchemes:
     oauth2:
       type: oauth2

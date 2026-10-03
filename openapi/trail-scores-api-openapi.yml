@@ -259,29 +259,6 @@ components:
             - status
       required:
       - errors
-    Error422:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unprocessable request
-              detail:
-                type: string
-                example: Invalid IDs
-              status:
-                type: integer
-                example: 422
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     Error429:
       type: object
       properties:
@@ -299,6 +276,29 @@ components:
               status:
                 type: integer
                 example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Error422:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unprocessable request
+              detail:
+                type: string
+                example: Invalid IDs
+              status:
+                type: integer
+                example: 422
             required:
             - title
             - detail

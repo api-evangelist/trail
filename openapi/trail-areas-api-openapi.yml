@@ -73,6 +73,29 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
     Error500:
       type: object
       properties:
@@ -96,6 +119,21 @@ components:
             - status
       required:
       - errors
+    Area:
+      type: object
+      description: An object representing a summary of an area - the model that represents the areas (groups of sites) in your organisation
+      properties:
+        id:
+          type: integer
+          example: 2584
+          description: Unique identifier for the area
+        name:
+          type: string
+          example: Greater London
+          description: Name of the area
+      required:
+      - id
+      - name
     Error429:
       type: object
       properties:
@@ -113,44 +151,6 @@ components:
               status:
                 type: integer
                 example: 429
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Area:
-      type: object
-      description: An object representing a summary of an area - the model that represents the areas (groups of sites) in your organisation
-      properties:
-        id:
-          type: integer
-          example: 2584
-          description: Unique identifier for the area
-        name:
-          type: string
-          example: Greater London
-          description: Name of the area
-      required:
-      - id
-      - name
-    Error401:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unauthorized
-              detail:
-                type: string
-                example: API key is missing or invalid
-              status:
-                type: integer
-                example: 401
             required:
             - title
             - detail

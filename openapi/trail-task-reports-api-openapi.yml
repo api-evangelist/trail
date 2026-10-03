@@ -538,6 +538,29 @@ components:
             - status
       required:
       - errors
+    Error429:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Too Many Requests
+              detail:
+                type: string
+                example: Rate limit exceeded. Try again later.
+              status:
+                type: integer
+                example: 429
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
     RecordLog:
       title: Record log
       type: object
@@ -813,29 +836,6 @@ components:
       - checkId
       - checkName
       - status
-    Error429:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Too Many Requests
-              detail:
-                type: string
-                example: Rate limit exceeded. Try again later.
-              status:
-                type: integer
-                example: 429
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     Error401:
       type: object
       properties:
@@ -859,6 +859,57 @@ components:
             - status
       required:
       - errors
+    Comment:
+      type: object
+      description: A comment object
+      properties:
+        content:
+          type: string
+          description: The text of the comment
+          example: Late due to fire alarm
+        attachmentUrls:
+          type: array
+          description: An array of the URLs of any files attached to the comment
+          items:
+            type: string
+            example: http://www.example.com/image
+        commentedDateTime:
+          type: string
+          format: date-time
+          description: An ISO8601 datetime representing the time the comment was posted
+          example: '2025-03-23T04:15:22Z'
+        commentedByUserName:
+          type: string
+          description: The name of the user who posted the comment
+          example: Sarah
+        commentedByUserId:
+          type: integer
+          description: The ID of the user who posted the comment
+          example: 123
+        checkId:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The ID of the checklist item the comment was posted on (if a checklist level comment)
+          example: 1499547660
+        recordLogRowIndex:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The index of the record log record the comment was posted on (if a record log level comment)
+          example: 0
+        recordLogFieldId:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The ID of the record log the comment was posted on (if a record log level comment)
+          example: '1687490122617'
+      required:
+      - content
+      - attachmentUrls
+      - commentedDateTime
+      - commentedByUserName
+      - commentedByUserId
     TaskInstance:
       type: object
       description: An object representing a task instance
@@ -973,57 +1024,6 @@ components:
       - siteId
       - siteName
       - status
-    Comment:
-      type: object
-      description: A comment object
-      properties:
-        content:
-          type: string
-          description: The text of the comment
-          example: Late due to fire alarm
-        attachmentUrls:
-          type: array
-          description: An array of the URLs of any files attached to the comment
-          items:
-            type: string
-            example: http://www.example.com/image
-        commentedDateTime:
-          type: string
-          format: date-time
-          description: An ISO8601 datetime representing the time the comment was posted
-          example: '2025-03-23T04:15:22Z'
-        commentedByUserName:
-          type: string
-          description: The name of the user who posted the comment
-          example: Sarah
-        commentedByUserId:
-          type: integer
-          description: The ID of the user who posted the comment
-          example: 123
-        checkId:
-          type:
-          - integer
-          - 'null'
-          description: Optional field. The ID of the checklist item the comment was posted on (if a checklist level comment)
-          example: 1499547660
-        recordLogRowIndex:
-          type:
-          - integer
-          - 'null'
-          description: Optional field. The index of the record log record the comment was posted on (if a record log level comment)
-          example: 0
-        recordLogFieldId:
-          type:
-          - integer
-          - 'null'
-          description: Optional field. The ID of the record log the comment was posted on (if a record log level comment)
-          example: '1687490122617'
-      required:
-      - content
-      - attachmentUrls
-      - commentedDateTime
-      - commentedByUserName
-      - commentedByUserId
   securitySchemes:
     API_KEY:
       type: apiKey

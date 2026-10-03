@@ -134,6 +134,29 @@ paths:
                 $ref: '#/components/schemas/Error401'
 components:
   schemas:
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
     Subtask:
       type: object
       properties:
@@ -210,29 +233,6 @@ components:
       - id
       - name
       - status
-    Error401:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unauthorized
-              detail:
-                type: string
-                example: API key is missing or invalid
-              status:
-                type: integer
-                example: 401
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
   securitySchemes:
     oauth2:
       type: oauth2

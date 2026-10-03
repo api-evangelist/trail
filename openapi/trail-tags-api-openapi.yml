@@ -73,21 +73,29 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Tag:
+    Error401:
       type: object
-      description: An object representing a summary of a tag - the model that represents the tags (labels you can use to categorize tasks) in your organisation
       properties:
-        id:
-          type: integer
-          example: 457
-          description: Unique identifier for the tag
-        label:
-          type: string
-          example: Back of house
-          description: Label for the tag
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
       required:
-      - id
-      - label
+      - errors
     Error500:
       type: object
       properties:
@@ -134,29 +142,21 @@ components:
             - status
       required:
       - errors
-    Error401:
+    Tag:
       type: object
+      description: An object representing a summary of a tag - the model that represents the tags (labels you can use to categorize tasks) in your organisation
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unauthorized
-              detail:
-                type: string
-                example: API key is missing or invalid
-              status:
-                type: integer
-                example: 401
-            required:
-            - title
-            - detail
-            - status
+        id:
+          type: integer
+          example: 457
+          description: Unique identifier for the tag
+        label:
+          type: string
+          example: Back of house
+          description: Label for the tag
       required:
-      - errors
+      - id
+      - label
   securitySchemes:
     API_KEY:
       type: apiKey
