@@ -515,7 +515,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Error500:
+    Error422:
       type: object
       properties:
         errors:
@@ -525,19 +525,133 @@ components:
             properties:
               title:
                 type: string
-                example: Internal Server Error
+                example: Unprocessable request
               detail:
                 type: string
-                example: An unexpected error occurred
+                example: Invalid IDs
               status:
                 type: integer
-                example: 500
+                example: 422
             required:
             - title
             - detail
             - status
       required:
       - errors
+    TaskInstance:
+      type: object
+      description: An object representing a task instance
+      properties:
+        taskInstanceId:
+          type: integer
+          description: Unique identifier for the task instance
+        taskInstanceName:
+          type: string
+          description: Name of the task instance
+        taskTemplateId:
+          type: integer
+          description: ID of the task template
+        dueByDatetime:
+          type: string
+          format: date_time
+          description: ISO8601 datetime when the task is due by
+        dueFromDatetime:
+          type: string
+          format: date_time
+          description: ISO8601 datetime when the task is due from
+        completedDatetime:
+          type:
+          - string
+          - 'null'
+          format: date_time
+          description: ISO8601 datetime when the task was completed, null if not completed
+        completedByUserId:
+          type:
+          - integer
+          - 'null'
+          description: ID of the user who completed the task, null if not completed
+        completedByUserName:
+          type:
+          - string
+          - 'null'
+          description: Name of the user who completed the task, null if not completed
+        taskType:
+          type: string
+          description: Type of task (e.g., repeat, one-time)
+        areaId:
+          type: integer
+          description: ID of the area associated with the task
+        areaName:
+          type: string
+          description: Name of the area associated with the task
+        siteId:
+          type: integer
+          description: ID of the site where the task is performed
+        siteName:
+          type: string
+          description: Name of the site where the task is performed
+        flaggedChecklistCount:
+          type: integer
+          description: Number of flagged checklist items
+        addedChecklistCount:
+          type: integer
+          description: Number of added checklist items
+        recordLogExceptionCount:
+          type: integer
+          description: Number of record log exceptions
+        exceptionTypes:
+          type: array
+          items:
+            type: string
+          description: Types of exceptions recorded for the task
+        requiresPin:
+          type: boolean
+          description: Indicates whether a PIN is required to complete the task
+        priority:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          description: Priority level of the task
+        exceptionCount:
+          type: integer
+          description: Total number of exceptions recorded
+        actionTaskInstanceIds:
+          type: array
+          items:
+            type: integer
+          description: IDs of related action tasks
+        linkedTaskInstanceId:
+          type:
+          - integer
+          - 'null'
+          description: ID of a linked task instance, if applicable
+        businessDates:
+          type: array
+          items:
+            type: string
+            format: date
+          description: Array of business dates associated with the task
+        status:
+          type: string
+          enum:
+          - pending
+          - inProgress
+          - completed
+          - completedEarly
+          - completedLate
+          - failed
+          description: Current status of the task instance
+      required:
+      - taskInstanceId
+      - taskInstanceName
+      - taskTemplateId
+      - dueByDatetime
+      - taskType
+      - siteId
+      - siteName
+      - status
     Error429:
       type: object
       properties:
@@ -561,6 +675,80 @@ components:
             - status
       required:
       - errors
+    Error401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Unauthorized
+              detail:
+                type: string
+                example: API key is missing or invalid
+              status:
+                type: integer
+                example: 401
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
+    Comment:
+      type: object
+      description: A comment object
+      properties:
+        content:
+          type: string
+          description: The text of the comment
+          example: Late due to fire alarm
+        attachmentUrls:
+          type: array
+          description: An array of the URLs of any files attached to the comment
+          items:
+            type: string
+            example: http://www.example.com/image
+        commentedDateTime:
+          type: string
+          format: date-time
+          description: An ISO8601 datetime representing the time the comment was posted
+          example: '2025-03-23T04:15:22Z'
+        commentedByUserName:
+          type: string
+          description: The name of the user who posted the comment
+          example: Sarah
+        commentedByUserId:
+          type: integer
+          description: The ID of the user who posted the comment
+          example: 123
+        checkId:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The ID of the checklist item the comment was posted on (if a checklist level comment)
+          example: 1499547660
+        recordLogRowIndex:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The index of the record log record the comment was posted on (if a record log level comment)
+          example: 0
+        recordLogFieldId:
+          type:
+          - integer
+          - 'null'
+          description: Optional field. The ID of the record log the comment was posted on (if a record log level comment)
+          example: '1687490122617'
+      required:
+      - content
+      - attachmentUrls
+      - commentedDateTime
+      - commentedByUserName
+      - commentedByUserId
     RecordLog:
       title: Record log
       type: object
@@ -762,29 +950,6 @@ components:
       - recordLogId
       - records
       - hasError
-    Error422:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Unprocessable request
-              detail:
-                type: string
-                example: Invalid IDs
-              status:
-                type: integer
-                example: 422
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     ChecklistItem:
       type: object
       description: A checklist item object
@@ -836,7 +1001,7 @@ components:
       - checkId
       - checkName
       - status
-    Error401:
+    Error500:
       type: object
       properties:
         errors:
@@ -846,184 +1011,19 @@ components:
             properties:
               title:
                 type: string
-                example: Unauthorized
+                example: Internal Server Error
               detail:
                 type: string
-                example: API key is missing or invalid
+                example: An unexpected error occurred
               status:
                 type: integer
-                example: 401
+                example: 500
             required:
             - title
             - detail
             - status
       required:
       - errors
-    Comment:
-      type: object
-      description: A comment object
-      properties:
-        content:
-          type: string
-          description: The text of the comment
-          example: Late due to fire alarm
-        attachmentUrls:
-          type: array
-          description: An array of the URLs of any files attached to the comment
-          items:
-            type: string
-            example: http://www.example.com/image
-        commentedDateTime:
-          type: string
-          format: date-time
-          description: An ISO8601 datetime representing the time the comment was posted
-          example: '2025-03-23T04:15:22Z'
-        commentedByUserName:
-          type: string
-          description: The name of the user who posted the comment
-          example: Sarah
-        commentedByUserId:
-          type: integer
-          description: The ID of the user who posted the comment
-          example: 123
-        checkId:
-          type:
-          - integer
-          - 'null'
-          description: Optional field. The ID of the checklist item the comment was posted on (if a checklist level comment)
-          example: 1499547660
-        recordLogRowIndex:
-          type:
-          - integer
-          - 'null'
-          description: Optional field. The index of the record log record the comment was posted on (if a record log level comment)
-          example: 0
-        recordLogFieldId:
-          type:
-          - integer
-          - 'null'
-          description: Optional field. The ID of the record log the comment was posted on (if a record log level comment)
-          example: '1687490122617'
-      required:
-      - content
-      - attachmentUrls
-      - commentedDateTime
-      - commentedByUserName
-      - commentedByUserId
-    TaskInstance:
-      type: object
-      description: An object representing a task instance
-      properties:
-        taskInstanceId:
-          type: integer
-          description: Unique identifier for the task instance
-        taskInstanceName:
-          type: string
-          description: Name of the task instance
-        taskTemplateId:
-          type: integer
-          description: ID of the task template
-        dueByDatetime:
-          type: string
-          format: date_time
-          description: ISO8601 datetime when the task is due by
-        dueFromDatetime:
-          type: string
-          format: date_time
-          description: ISO8601 datetime when the task is due from
-        completedDatetime:
-          type:
-          - string
-          - 'null'
-          format: date_time
-          description: ISO8601 datetime when the task was completed, null if not completed
-        completedByUserId:
-          type:
-          - integer
-          - 'null'
-          description: ID of the user who completed the task, null if not completed
-        completedByUserName:
-          type:
-          - string
-          - 'null'
-          description: Name of the user who completed the task, null if not completed
-        taskType:
-          type: string
-          description: Type of task (e.g., repeat, one-time)
-        areaId:
-          type: integer
-          description: ID of the area associated with the task
-        areaName:
-          type: string
-          description: Name of the area associated with the task
-        siteId:
-          type: integer
-          description: ID of the site where the task is performed
-        siteName:
-          type: string
-          description: Name of the site where the task is performed
-        flaggedChecklistCount:
-          type: integer
-          description: Number of flagged checklist items
-        addedChecklistCount:
-          type: integer
-          description: Number of added checklist items
-        recordLogExceptionCount:
-          type: integer
-          description: Number of record log exceptions
-        exceptionTypes:
-          type: array
-          items:
-            type: string
-          description: Types of exceptions recorded for the task
-        requiresPin:
-          type: boolean
-          description: Indicates whether a PIN is required to complete the task
-        priority:
-          type: string
-          enum:
-          - low
-          - medium
-          - high
-          description: Priority level of the task
-        exceptionCount:
-          type: integer
-          description: Total number of exceptions recorded
-        actionTaskInstanceIds:
-          type: array
-          items:
-            type: integer
-          description: IDs of related action tasks
-        linkedTaskInstanceId:
-          type:
-          - integer
-          - 'null'
-          description: ID of a linked task instance, if applicable
-        businessDates:
-          type: array
-          items:
-            type: string
-            format: date
-          description: Array of business dates associated with the task
-        status:
-          type: string
-          enum:
-          - pending
-          - inProgress
-          - completed
-          - completedEarly
-          - completedLate
-          - failed
-          description: Current status of the task instance
-      required:
-      - taskInstanceId
-      - taskInstanceName
-      - taskTemplateId
-      - dueByDatetime
-      - taskType
-      - siteId
-      - siteName
-      - status
   securitySchemes:
     API_KEY:
       type: apiKey

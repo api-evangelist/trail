@@ -119,6 +119,52 @@ paths:
       description: US
 components:
   schemas:
+    TaskTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Task template ID
+        name:
+          type: string
+          example: Daily Cleaning
+          description: Task template name
+        notes:
+          type: string
+          example: Clean the main areas
+          description: Task description/notes
+        template_type:
+          type: string
+          example: single
+          description: Template type (single, recurring, on_demand, etc.)
+        status:
+          type: string
+          example: published
+          description: Template status
+        priority:
+          type: string
+          example: medium
+          description: Task priority (high, medium, low)
+        location_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 1
+          - 2
+          - 3
+          description: Array of location IDs
+        subtasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subtask'
+          description: Array of subtasks
+      required:
+      - id
+      - name
+      - template_type
+      - status
     Error401:
       type: object
       properties:
@@ -167,75 +213,6 @@ components:
       - id
       - name
       - completion_value
-    TaskTemplate:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-          description: Task template ID
-        name:
-          type: string
-          example: Daily Cleaning
-          description: Task template name
-        notes:
-          type: string
-          example: Clean the main areas
-          description: Task description/notes
-        template_type:
-          type: string
-          example: single
-          description: Template type (single, recurring, on_demand, etc.)
-        status:
-          type: string
-          example: published
-          description: Template status
-        priority:
-          type: string
-          example: medium
-          description: Task priority (high, medium, low)
-        location_ids:
-          type: array
-          items:
-            type: integer
-          example:
-          - 1
-          - 2
-          - 3
-          description: Array of location IDs
-        subtasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subtask'
-          description: Array of subtasks
-      required:
-      - id
-      - name
-      - template_type
-      - status
-    Error500:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Internal Server Error
-              detail:
-                type: string
-                example: An unexpected error occurred
-              status:
-                type: integer
-                example: 500
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
     Error429:
       type: object
       properties:
@@ -320,6 +297,29 @@ components:
       - name
       - status
       - type
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
   securitySchemes:
     oauth2:
       type: oauth2

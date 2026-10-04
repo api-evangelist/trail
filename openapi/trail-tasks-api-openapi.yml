@@ -157,31 +157,6 @@ components:
             - status
       required:
       - errors
-    Subtask:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-          description: Subtask ID
-        name:
-          type: string
-          example: Clean floors
-          description: Subtask name
-        completion_value:
-          type: string
-          example: unchecked
-          description: Subtask completion value
-        position:
-          type:
-          - integer
-          - 'null'
-          example: 0
-          description: Subtask position
-      required:
-      - id
-      - name
-      - completion_value
     Task:
       type: object
       properties:
@@ -233,6 +208,31 @@ components:
       - id
       - name
       - status
+    Subtask:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Subtask ID
+        name:
+          type: string
+          example: Clean floors
+          description: Subtask name
+        completion_value:
+          type: string
+          example: unchecked
+          description: Subtask completion value
+        position:
+          type:
+          - integer
+          - 'null'
+          example: 0
+          description: Subtask position
+      required:
+      - id
+      - name
+      - completion_value
   securitySchemes:
     oauth2:
       type: oauth2
