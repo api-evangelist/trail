@@ -1,0 +1,12 @@
+{
+ "url": "https://web.trailapp.com/swagger/public/sites/v1/trail_sites_v1.yaml",
+ "requested_url": "https://web.trailapp.com/swagger/public/sites/v1/trail_sites_v1.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 5593,
+ "sha256": "95bfbe01ad26a86228c4ada1830a3885c16a676f2bbf5a8ada769f9675137829",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

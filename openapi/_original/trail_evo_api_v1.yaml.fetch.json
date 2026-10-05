@@ -1,0 +1,12 @@
+{
+ "url": "https://web.trailapp.com/swagger/evo_api/v1/trail_evo_api_v1.yaml",
+ "requested_url": "https://web.trailapp.com/swagger/evo_api/v1/trail_evo_api_v1.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 11664,
+ "sha256": "cdae2d8e0fef93e0aacc56f1b52427755133e37536edce59c1b3c6703bb0e827",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
