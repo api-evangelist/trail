@@ -219,6 +219,29 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Error500:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Internal Server Error
+              detail:
+                type: string
+                example: An unexpected error occurred
+              status:
+                type: integer
+                example: 500
+            required:
+            - title
+            - detail
+            - status
+      required:
+      - errors
     Error422:
       type: object
       properties:
@@ -236,29 +259,6 @@ components:
               status:
                 type: integer
                 example: 422
-            required:
-            - title
-            - detail
-            - status
-      required:
-      - errors
-    Error429:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                example: Too Many Requests
-              detail:
-                type: string
-                example: Rate limit exceeded. Try again later.
-              status:
-                type: integer
-                example: 429
             required:
             - title
             - detail
@@ -506,7 +506,7 @@ components:
             - status
       required:
       - errors
-    Error500:
+    Error429:
       type: object
       properties:
         errors:
@@ -516,13 +516,13 @@ components:
             properties:
               title:
                 type: string
-                example: Internal Server Error
+                example: Too Many Requests
               detail:
                 type: string
-                example: An unexpected error occurred
+                example: Rate limit exceeded. Try again later.
               status:
                 type: integer
-                example: 500
+                example: 429
             required:
             - title
             - detail
