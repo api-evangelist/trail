@@ -410,3 +410,9 @@ components:
 externalDocs:
   description: How to obtain an API key
   url: https://answers.trailapp.com/en/articles/9166997-trail-s-task-api
+x-provenance:
+  method: harvested
+  publisher: Trail
+  source: https://web.trailapp.com/swagger/public/scores/v1/trail_scores_v1.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
